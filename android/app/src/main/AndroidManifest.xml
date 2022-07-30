@@ -1,0 +1,63 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="xzone.dex.customers">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="com.google.android.c2dm.permission.SEND" />
+    <uses-permission android:name="com.deltadna.notification_test.permission.C2D_MESSAGE" />
+    <uses-feature android:name="android.hardware.location.network" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- <permission
+             android:name="com.deltadna.notification_test.permission.C2D_MESSAGE"
+             android:protectionLevel="signature" /> -->
+    <!-- <uses-permission android:name="com.deltadna.notification_test.permission.C2D_MESSAGE" /> -->
+
+    <!--    <uses-permission android:name=-->
+    <!--        "android.permission.ACCESS_COARSE_LOCATION"/>-->
+    <!--    <uses-permission android:name=-->
+    <!--        "android.permission.ACCESS_FINE_LOCATION"/>-->
+
+    <application android:label="DEX" android:icon="@mipmap/launcher_icon" android:usesCleartextTraffic="true">
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <activity android:name="io.flutter.embedding.android.FlutterActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
+            <!-- This keeps the window background of the activity showing
+                 until Flutter renders its first frame. It can be removed if
+                 there is no splash screen (such as the default splash screen
+                 defined in @style/LaunchTheme). -->
+            <meta-data android:name="flutterEmbedding" android:value="2"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="delieryx.page.link" android:pathPattern=".*" android:scheme="https" />
+
+            </intent-filter>
+            <intent-filter>
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
