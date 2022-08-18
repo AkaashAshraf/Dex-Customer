@@ -32,7 +32,6 @@ import 'package:customers/widgets/shop/product_card.dart';
 import 'package:customers/widgets/shop/shop_card.dart';
 import 'package:customers/widgets/story/story_header.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_widgets/responsive_widgets.dart';
@@ -686,7 +685,7 @@ class _HomePageState extends State<HomePage> {
                                                                           ),
                                                                           Expanded(
                                                                             child:
-                                                                                Text(singleStory[index].purplisherName, style: TextStyle(color: Colors.white)),
+                                                                                Text(context.locale == Locale('ar') ? singleStory[index].purplisherNameAr.toString() : singleStory[index].purplisherName.toString(), style: TextStyle(color: Colors.white)),
                                                                           )
                                                                         ],
                                                                       ),
@@ -704,9 +703,7 @@ class _HomePageState extends State<HomePage> {
                                                                                 120,
                                                                             child:
                                                                                 StoryHeader(
-                                                                              imageLink: singleStory[index].storyImage != null 
-                                                                              
-                                                                              ? APIKeys.ONLINE_IMAGE_BASE_URL + singleStory[index].storyImage.toString() : APIKeys.ONLINE_IMAGE_BASE_URL + singleStory[index].purplisherImage.toString(),
+                                                                              imageLink: singleStory[index].storyImage != null ? APIKeys.ONLINE_IMAGE_BASE_URL + singleStory[index].storyImage.toString() : APIKeys.ONLINE_IMAGE_BASE_URL + singleStory[index].purplisherImage.toString(),
                                                                             ),
                                                                           ),
                                                                           SizedBox(
@@ -942,6 +939,10 @@ class _HomePageState extends State<HomePage> {
                                                   builder:
                                                       (context, value, child) {
                                                     if (value.offers != null) {
+                                                      if (value.offers.length <
+                                                          1)
+                                                        return SizedBox
+                                                            .shrink();
                                                       return Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -1093,7 +1094,8 @@ class _HomePageState extends State<HomePage> {
                                                                           .primaryColor
                                                                       : Theme.of(
                                                                               context)
-                                                                          .accentColor,
+                                                                          .colorScheme
+                                                                          .secondary,
                                                                 ),
                                                               );
                                                             }),
