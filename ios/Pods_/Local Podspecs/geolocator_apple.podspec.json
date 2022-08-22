@@ -1,0 +1,30 @@
+{
+  "name": "geolocator_apple",
+  "version": "1.0.0",
+  "summary": "Geolocation Apple plugin for Flutter.",
+  "description": "Geolocation Apple plugin for Flutter. This plugin provides the Apple implementation for the geolocator plugin.",
+  "homepage": "http://github.com/baseflow/flutter-geolocator",
+  "license": {
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Baseflow": "hello@baseflow.com"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+  }
+}

@@ -1,0 +1,4 @@
+class MapKeys{
+  static const String baseURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=';
+  static const String apiKey = "AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw";
+}

@@ -1,0 +1,19 @@
+<svg id="_22_Icons_Line_Right_arrow_Copy_4" data-name="22) Icons/Line/Right arrow Copy 4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ed8437;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Mask" class="cls-1" d="M9.667,19.333a9.667,9.667,0,1,1,9.667-9.667A9.678,9.678,0,0,1,9.667,19.333Zm0-17.4A7.733,7.733,0,1,0,17.4,9.667,7.742,7.742,0,0,0,9.667,1.934Zm4.833,8.7H9.667A.968.968,0,0,1,8.7,9.667V4.833a.967.967,0,0,1,1.934,0V8.7H14.5a.967.967,0,0,1,0,1.934Z"/>
+    </clipPath>
+  </defs>
+  <g id="Group_53" data-name="Group 53" transform="translate(3.333 3.333)">
+    <path id="Mask-2" data-name="Mask" class="cls-1" d="M9.667,19.333a9.667,9.667,0,1,1,9.667-9.667A9.678,9.678,0,0,1,9.667,19.333Zm0-17.4A7.733,7.733,0,1,0,17.4,9.667,7.742,7.742,0,0,0,9.667,1.934Zm4.833,8.7H9.667A.968.968,0,0,1,8.7,9.667V4.833a.967.967,0,0,1,1.934,0V8.7H14.5a.967.967,0,0,1,0,1.934Z" transform="translate(0 0)"/>
+  </g>
+</svg>
