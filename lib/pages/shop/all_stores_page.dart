@@ -33,30 +33,41 @@ ScrollController controller = ScrollController();
 
 class _State extends State<AllStores> {
   List<Shop> viewed = [];
+  List<Shop> list = [];
   String currentTag = 'all';
   TextEditingController textctrl = TextEditingController();
 
   void filterViewed(String text) {
-    var list = viewed;
+    if (text == '') {
+      viewed = list;
+      setState(() {});
+      return;
+    }
+    var tlist = list;
+    log('list4: $list');
     viewed = [];
-    for (int i = 0; i < list.length; i++) {
-      if (list[i].name.contains(text)) {
-        viewed.add(list[i]);
+    for (int i = 0; i < tlist.length; i++) {
+      if (tlist[i].name.toLowerCase().contains(text.toLowerCase())) {
+        viewed.add(tlist[i]);
       }
     }
     setState(() {});
   }
 
   void filterShops({String tag, List<Shop> shops}) {
+    log('tag: $tag');
+    log('tag: $shops');
     viewed = [];
     if (tag != 'all') {
       for (int i = 0; i < shops.length; i++) {
         if (shops[i].tag == tag) {
           viewed.add(shops[i]);
+          list.add(shops[i]);
         }
       }
     } else if (tag == 'all') {
       viewed = shops;
+      list = shops;
     }
     print(viewed);
     setState(() {});
@@ -547,12 +558,12 @@ class _State extends State<AllStores> {
                       padding: EdgeInsetsResponsive.symmetric(horizontal: 20),
                       child: TextField(
                         onChanged: (text) {
-                          if (text != '') {
-                            filterViewed(text);
-                          } else {
-                            filterShops(
-                                shops: shopsProvider.shopsByRegion, tag: 'all');
-                          }
+                          // if (text != '') {
+                          filterViewed(text);
+                          // } else {
+                          //   // filterShops(
+                          //   //     shops: shopsProvider.shopsByRegion, tag: 'all');
+                          // }
                         },
                         style: TextStyle(fontSize: 20),
                         decoration: InputDecoration(

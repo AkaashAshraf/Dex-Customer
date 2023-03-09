@@ -40,7 +40,7 @@ class MapSampleState extends State<MapSample> {
   Set<Polyline> _polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPIKey = "AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw";
+  String googleAPIKey = "AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc";
   Future _getLocation() async {
     setState(() {
       loading = true;

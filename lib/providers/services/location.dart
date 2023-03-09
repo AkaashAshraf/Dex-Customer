@@ -1,13 +1,19 @@
+import 'dart:developer';
+
 import 'package:customers/providers/services/last_position_provider.dart';
 import 'package:customers/providers/services/long_lat_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_api_headers/google_api_headers.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:location/location.dart' as l;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
 
 class ProductLocation extends StatefulWidget {
   final bool secondPick;
@@ -20,11 +26,23 @@ class ProductLocation extends StatefulWidget {
 }
 
 class ProductLocationState extends State<ProductLocation> {
-  var location = Location();
+  String mapKey = "AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc";
+  Position _pickPosition = Position(
+      longitude: 0,
+      latitude: 0,
+      timestamp: DateTime.now(),
+      accuracy: 1,
+      altitude: 1,
+      heading: 1,
+      speed: 1,
+      speedAccuracy: 1);
+  GoogleMapController _mapController;
+
+  var location = l.Location();
   Completer<GoogleMapController> _controller = Completer();
   LatLng _lastPosition;
   Future _getLocation(BuildContext context) async {
-    LocationData loc;
+    l.LocationData loc;
     try {
       loc = await location.getLocation();
       Provider.of<LongLatProvider>(context, listen: false)
@@ -76,31 +94,126 @@ class ProductLocationState extends State<ProductLocation> {
     return Consumer<LongLatProvider>(
       builder: (context, longLatPorivder, _) {
         return Scaffold(
-          body: Stack(
+          body: Column(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 24),
-                child: GoogleMap(
-                  myLocationEnabled: true,
-                  mapType: MapType.normal,
-                  initialCameraPosition: _kGooglePlex,
-                  onCameraMove: _onCameraMove,
-                  onMapCreated: (GoogleMapController controller) {
-                    _lastPosition =
-                        LatLng(longLatPorivder.lat, longLatPorivder.long);
-                    _kLake = CameraPosition(
-                        bearing: 192.8334901395799,
-                        target: _lastPosition,
-                        zoom: 15.4746);
-                    _controller.complete(controller);
-                  },
+              SizedBox(
+                height: 100,
+                child: Row(
+                  children: [
+                    InkWell(
+                      // onTap: () => Get.back(),
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        // color: AppColors.whiteshade,
+                      ),
+                    ),
+                    Expanded(
+                      child: InkWell(
+                          onTap: () async {
+                            var place = await PlacesAutocomplete.show(
+                                context: context,
+                                apiKey: mapKey,
+                                mode: Mode.overlay,
+                                types: [],
+                                strictbounds: false,
+                                components: [
+                                  Component(Component.country, 'om'),
+                                  // Component(Component.country, 'uae'),
+                                ],
+                                //google_map_webservice package
+                                onError: (err) {
+                                  log('reslut: ${err.errorMessage}');
+                                });
+
+                            if (place != null) {
+                              log('place ${place.description}');
+                              // setState(() {
+                              //   location = place.description.toString();
+                              // });
+
+                              //form google_maps_webservice package
+                              final plist = GoogleMapsPlaces(
+                                apiKey: mapKey,
+                                apiHeaders:
+                                    await const GoogleApiHeaders().getHeaders(),
+                                //from google_api_headers package
+                              );
+                              String placeid = place.placeId ?? "0";
+                              final detail =
+                                  await plist.getDetailsByPlaceId(placeid);
+                              final geometry = detail.result.geometry;
+                              final lat = geometry.location.lat;
+                              final lang = geometry.location.lng;
+                              var newlatlang = LatLng(lat, lang);
+                              _pickPosition = Position(
+                                  longitude: 3.25552,
+                                  latitude: 3.255,
+                                  timestamp: DateTime.now(),
+                                  accuracy: 1,
+                                  altitude: 1,
+                                  heading: 1,
+                                  speed: 1,
+                                  speedAccuracy: 1);
+                              // await _getAddressFromLatLng(_pickPosition);
+                              _mapController.animateCamera(
+                                  CameraUpdate.newCameraPosition(CameraPosition(
+                                      target: newlatlang, zoom: 17)));
+                            }
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                // color: AppColors.white,
+                              ),
+                              padding: const EdgeInsets.all(0),
+                              // width: MediaQuery.of(context).size.width - 40,
+                              child: ListTile(
+                                title: Text(
+                                  'searchForYourAddress'.tr(),
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    // color: AppColors.blackshade
+                                    //     .withOpacity(.5),
+                                  ),
+                                ),
+                                trailing: Icon(
+                                  Icons.search,
+                                  // color:
+                                  // AppColors.blackshade.withOpacity(.5),
+                                ),
+                                dense: true,
+                              ))),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 300,
+                child: Container(
+                  margin: EdgeInsets.only(top: 24),
+                  child: GoogleMap(
+                    myLocationEnabled: true,
+                    mapType: MapType.normal,
+                    initialCameraPosition: _kGooglePlex,
+                    onCameraMove: _onCameraMove,
+                    onMapCreated: (GoogleMapController controller) {
+                      _mapController = controller;
+                      _lastPosition =
+                          LatLng(longLatPorivder.lat, longLatPorivder.long);
+                      _kLake = CameraPosition(
+                          bearing: 192.8334901395799,
+                          target: _lastPosition,
+                          zoom: 15.4746);
+                      _controller.complete(controller);
+                    },
+                  ),
                 ),
               ),
               Align(
                   alignment: Alignment.center,
                   child: Icon(
                     CupertinoIcons.location_solid,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 30,
                   )),
               Align(
@@ -148,7 +261,7 @@ class ProductLocationState extends State<ProductLocation> {
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40),
                         ),
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Center(
                         child: Text(
