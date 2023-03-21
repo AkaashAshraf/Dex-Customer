@@ -151,7 +151,7 @@ class WalletProvider extends ChangeNotifier {
     } catch (error) {
       _loadingCredit = false;
       notifyListeners();
-      log('point_to_credit_error '+error);
+      log('point_to_credit_error ' + error);
       throw error;
     }
   }
@@ -162,7 +162,9 @@ class WalletProvider extends ChangeNotifier {
       notifyListeners();
       var response = await Dio()
           .get(APIKeys.BASE_URL + 'withdrawCredit&Customer=$id&amount=$amount');
-          log('withdrawCreditURL:  ' + APIKeys.BASE_URL + 'withdrawCredit&Customer=$id&amount=$amount');
+      log('withdrawCreditURL:  ' +
+          APIKeys.BASE_URL +
+          'withdrawCredit&Customer=$id&amount=$amount');
       var data = response.data;
       if (data['state'] == true) {
         Fluttertoast.showToast(
@@ -207,6 +209,7 @@ class WalletProvider extends ChangeNotifier {
     try {
       var response =
           await Dio().get(APIKeys.BASE_URL + 'getDexPoints/owner=$id');
+      log('api ${APIKeys.BASE_URL + 'getDexPoints/owner=$id'}');
       var data = response.data['data'];
       _sharedProducts = data
           .map<SharedProduct>((json) => SharedProduct.fromJson(json))

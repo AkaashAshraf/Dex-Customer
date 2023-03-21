@@ -55,7 +55,7 @@ class _PlaceState extends State<Place> {
               },
               selectedPlaceWidgetBuilder:
                   (context, selectedPlac, state, isSearching) {
-                log('selected plase: $isSearching');
+                log('selected plase: $selectedPlac');
                 return Align(
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(

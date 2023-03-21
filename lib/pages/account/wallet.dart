@@ -382,8 +382,12 @@ class _WalletState extends State<Wallet> {
                             child: ListView.builder(
                               shrinkWrap: true,
                               itemCount: wallet.sharedProducts.length,
-                              itemBuilder: (context, index) => WalletCard(
-                                  sharedProduct: wallet.sharedProducts[index]),
+                              itemBuilder: (context, index) =>
+                                  wallet.sharedProducts[index].product == null
+                                      ? Container()
+                                      : WalletCard(
+                                          sharedProduct:
+                                              wallet.sharedProducts[index]),
                             ),
                           ),
                     SizedBoxResponsive(height: 30),

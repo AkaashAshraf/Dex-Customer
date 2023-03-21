@@ -409,10 +409,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             final _myLocation =
                                 await locationService.getLocation();
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => MapSample(
-                                      from: 'shop',
-                                      loc: _myLocation,
-                                    )));
+                                builder: (context) => Place()));
                             // final result = await Navigator.of(context)
                             //     .push(MaterialPageRoute(
                             //         builder: (context) => PlacePicker(

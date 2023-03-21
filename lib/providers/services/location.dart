@@ -94,119 +94,32 @@ class ProductLocationState extends State<ProductLocation> {
     return Consumer<LongLatProvider>(
       builder: (context, longLatPorivder, _) {
         return Scaffold(
-          body: Column(
+          body: Stack(
             children: <Widget>[
-              SizedBox(
-                height: 100,
-                child: Row(
-                  children: [
-                    InkWell(
-                      // onTap: () => Get.back(),
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        // color: AppColors.whiteshade,
-                      ),
-                    ),
-                    Expanded(
-                      child: InkWell(
-                          onTap: () async {
-                            var place = await PlacesAutocomplete.show(
-                                context: context,
-                                apiKey: mapKey,
-                                mode: Mode.overlay,
-                                types: [],
-                                strictbounds: false,
-                                components: [
-                                  Component(Component.country, 'om'),
-                                  // Component(Component.country, 'uae'),
-                                ],
-                                //google_map_webservice package
-                                onError: (err) {
-                                  log('reslut: ${err.errorMessage}');
-                                });
-
-                            if (place != null) {
-                              log('place ${place.description}');
-                              // setState(() {
-                              //   location = place.description.toString();
-                              // });
-
-                              //form google_maps_webservice package
-                              final plist = GoogleMapsPlaces(
-                                apiKey: mapKey,
-                                apiHeaders:
-                                    await const GoogleApiHeaders().getHeaders(),
-                                //from google_api_headers package
-                              );
-                              String placeid = place.placeId ?? "0";
-                              final detail =
-                                  await plist.getDetailsByPlaceId(placeid);
-                              final geometry = detail.result.geometry;
-                              final lat = geometry.location.lat;
-                              final lang = geometry.location.lng;
-                              var newlatlang = LatLng(lat, lang);
-                              _pickPosition = Position(
-                                  longitude: 3.25552,
-                                  latitude: 3.255,
-                                  timestamp: DateTime.now(),
-                                  accuracy: 1,
-                                  altitude: 1,
-                                  heading: 1,
-                                  speed: 1,
-                                  speedAccuracy: 1);
-                              // await _getAddressFromLatLng(_pickPosition);
-                              _mapController.animateCamera(
-                                  CameraUpdate.newCameraPosition(CameraPosition(
-                                      target: newlatlang, zoom: 17)));
-                            }
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                // color: AppColors.white,
-                              ),
-                              padding: const EdgeInsets.all(0),
-                              // width: MediaQuery.of(context).size.width - 40,
-                              child: ListTile(
-                                title: Text(
-                                  'searchForYourAddress'.tr(),
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    // color: AppColors.blackshade
-                                    //     .withOpacity(.5),
-                                  ),
-                                ),
-                                trailing: Icon(
-                                  Icons.search,
-                                  // color:
-                                  // AppColors.blackshade.withOpacity(.5),
-                                ),
-                                dense: true,
-                              ))),
-                    )
-                  ],
+              InkWell(
+                // onTap: () => Get.back(),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  // color: AppColors.whiteshade,
                 ),
               ),
-              SizedBox(
-                height: 300,
-                child: Container(
-                  margin: EdgeInsets.only(top: 24),
-                  child: GoogleMap(
-                    myLocationEnabled: true,
-                    mapType: MapType.normal,
-                    initialCameraPosition: _kGooglePlex,
-                    onCameraMove: _onCameraMove,
-                    onMapCreated: (GoogleMapController controller) {
-                      _mapController = controller;
-                      _lastPosition =
-                          LatLng(longLatPorivder.lat, longLatPorivder.long);
-                      _kLake = CameraPosition(
-                          bearing: 192.8334901395799,
-                          target: _lastPosition,
-                          zoom: 15.4746);
-                      _controller.complete(controller);
-                    },
-                  ),
+              Container(
+                margin: EdgeInsets.only(top: 24),
+                child: GoogleMap(
+                  myLocationEnabled: true,
+                  mapType: MapType.normal,
+                  initialCameraPosition: _kGooglePlex,
+                  onCameraMove: _onCameraMove,
+                  onMapCreated: (GoogleMapController controller) {
+                    _mapController = controller;
+                    _lastPosition =
+                        LatLng(longLatPorivder.lat, longLatPorivder.long);
+                    _kLake = CameraPosition(
+                        bearing: 192.8334901395799,
+                        target: _lastPosition,
+                        zoom: 15.4746);
+                    _controller.complete(controller);
+                  },
                 ),
               ),
               Align(

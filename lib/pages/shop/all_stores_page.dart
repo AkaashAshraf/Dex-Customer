@@ -21,10 +21,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AllStores extends StatefulWidget {
+  const AllStores({Key key, this.section, this.stories}) : super(key: key);
+
   final String section;
   final List<Story> stories;
 
-  const AllStores({Key key, this.section, this.stories}) : super(key: key);
   @override
   _State createState() => _State();
 }
@@ -32,10 +33,36 @@ class AllStores extends StatefulWidget {
 ScrollController controller = ScrollController();
 
 class _State extends State<AllStores> {
-  List<Shop> viewed = [];
-  List<Shop> list = [];
   String currentTag = 'all';
+  List<Shop> list = [];
   TextEditingController textctrl = TextEditingController();
+  List<Shop> viewed = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<ShopsProvider>(context, listen: false).startLoad();
+      await Provider.of<ShopsProvider>(context, listen: false)
+          .getTags(type: widget.section == 'store' ? 'store' : 'restaurant');
+      filterShops(
+          shops: widget.section == 'store'
+              ? Provider.of<ShopsProvider>(context, listen: false).shopsByRegion
+              : Provider.of<ShopsProvider>(context, listen: false).resByRegion,
+          tag: 'all');
+    });
+    controller.addListener(() {
+      if (controller.position.pixels == controller.position.maxScrollExtent &&
+          Provider.of<ShopsProvider>(context, listen: false).loading == false) {
+        print('end');
+        widget.section == 'store'
+            ? Provider.of<ShopsProvider>(context, listen: false)
+                .getMoreShopsByRegion(allshops: true)
+            : Provider.of<ShopsProvider>(context, listen: false)
+                .getMoreResByRegion(allshops: true);
+      }
+    });
+  }
 
   void filterViewed(String text) {
     if (text == '') {
@@ -373,30 +400,74 @@ class _State extends State<AllStores> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Provider.of<ShopsProvider>(context, listen: false).startLoad();
-      await Provider.of<ShopsProvider>(context, listen: false)
-          .getTags(type: widget.section == 'store' ? 'store' : 'restaurant');
-      filterShops(
-          shops: widget.section == 'store'
-              ? Provider.of<ShopsProvider>(context, listen: false).shopsByRegion
-              : Provider.of<ShopsProvider>(context, listen: false).resByRegion,
-          tag: 'all');
-    });
-    controller.addListener(() {
-      if (controller.position.pixels == controller.position.maxScrollExtent &&
-          Provider.of<ShopsProvider>(context, listen: false).loading == false) {
-        print('end');
-        widget.section == 'store'
-            ? Provider.of<ShopsProvider>(context, listen: false)
-                .getMoreShopsByRegion(allshops: true)
-            : Provider.of<ShopsProvider>(context, listen: false)
-                .getMoreResByRegion(allshops: true);
-      }
-    });
+  _palecesCard(Shop shop) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ProviderScreen(provider: shop)));
+      },
+      child: Center(
+        child: Container(
+            width: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.grey[100],
+            ),
+            margin: EdgeInsets.all(5),
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  width: 200,
+                  height: 50,
+                  child: CachedNetworkImage(
+                    imageUrl: APIKeys.ONLINE_IMAGE_BASE_URL + shop.image,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) => ImageLoad(150.0),
+                    errorWidget: (context, url, error) =>
+                        Image.asset('images/image404.png'),
+                  ),
+                ),
+                SizedBoxResponsive(height: 5),
+                Container(
+                    margin: EdgeInsets.only(right: 8),
+                    child: Text(
+                      shop.name,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.right,
+                    )),
+                SizedBoxResponsive(height: 5),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        width: 100,
+                        child: Text(
+                          shop.description == null ? '' : shop.description,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      Icon(
+                        Icons.description,
+                        size: 15,
+                        color: Color(0xffFBB746),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBoxResponsive(height: 5),
+              ],
+            )),
+      ),
+    );
   }
 
   @override
@@ -605,75 +676,5 @@ class _State extends State<AllStores> {
             );
           },
         ));
-  }
-
-  _palecesCard(Shop shop) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ProviderScreen(provider: shop)));
-      },
-      child: Center(
-        child: Container(
-            width: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.grey[100],
-            ),
-            margin: EdgeInsets.all(5),
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  width: 200,
-                  height: 50,
-                  child: CachedNetworkImage(
-                    imageUrl: APIKeys.ONLINE_IMAGE_BASE_URL + shop.image,
-                    fit: BoxFit.contain,
-                    placeholder: (context, url) => ImageLoad(150.0),
-                    errorWidget: (context, url, error) =>
-                        Image.asset('images/image404.png'),
-                  ),
-                ),
-                SizedBoxResponsive(height: 5),
-                Container(
-                    margin: EdgeInsets.only(right: 8),
-                    child: Text(
-                      shop.name,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.right,
-                    )),
-                SizedBoxResponsive(height: 5),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        child: Text(
-                          shop.description == null ? '' : shop.description,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.right,
-                        ),
-                      ),
-                      Icon(
-                        Icons.description,
-                        size: 15,
-                        color: Color(0xffFBB746),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBoxResponsive(height: 5),
-              ],
-            )),
-      ),
-    );
   }
 }
