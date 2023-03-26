@@ -30,8 +30,8 @@ class _WalletState extends State<Wallet> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       wlt.startLoad();
-       wlt.calculate(widget.user.minPoints * 1.0, widget.user.maxPoints * 1.0,
-           widget.user.points != null ? widget.user.points * 1.0 : 0.0);
+      wlt.calculate(widget.user.minPoints * 1.0, widget.user.maxPoints * 1.0,
+          widget.user.points != null ? widget.user.points * 1.0 : 0.0);
       // wlt.calculate(157.0 * 1.0, 200.0 * 1.0,
       //     widget.user.points != null ? widget.user.points * 1.0 : 0.0);
       wlt.getSharedProducts(id: widget.user.id.toString());
@@ -93,7 +93,7 @@ class _WalletState extends State<Wallet> {
                                       TextResponsive(
                                         'Totalpts'.tr() +
                                             ' : ' +
-                                            '${widget.user.points.toStringAsFixed(2)}' +
+                                            '${widget.user.points == null ? 0 : widget.user.points.toStringAsFixed(2)}' +
                                             ' ' +
                                             'pts'.tr(),
                                         style: TextStyle(
@@ -177,7 +177,8 @@ class _WalletState extends State<Wallet> {
                                         ),
                                         wallet.loadingCredit
                                             ? CupertinoActivityIndicator()
-                                            : TextResponsive('packageUpgrade'.tr(),
+                                            : TextResponsive(
+                                                'packageUpgrade'.tr(),
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 20,
@@ -381,8 +382,12 @@ class _WalletState extends State<Wallet> {
                             child: ListView.builder(
                               shrinkWrap: true,
                               itemCount: wallet.sharedProducts.length,
-                              itemBuilder: (context, index) => WalletCard(
-                                  sharedProduct: wallet.sharedProducts[index]),
+                              itemBuilder: (context, index) =>
+                                  wallet.sharedProducts[index].product == null
+                                      ? Container()
+                                      : WalletCard(
+                                          sharedProduct:
+                                              wallet.sharedProducts[index]),
                             ),
                           ),
                     SizedBoxResponsive(height: 30),
@@ -397,8 +402,8 @@ class _WalletState extends State<Wallet> {
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     width: 1,
-                                    color: Theme.of(context)
-                                        .secondaryHeaderColor),
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
@@ -407,9 +412,8 @@ class _WalletState extends State<Wallet> {
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                     isDense: true,
-                                    contentPadding:
-                                        EdgeInsetsResponsive.only(
-                                            top: 10, left: 5, right: 5),
+                                    contentPadding: EdgeInsetsResponsive.only(
+                                        top: 10, left: 5, right: 5),
                                     counterText: '',
                                     border: InputBorder.none),
                               )),
@@ -426,8 +430,8 @@ class _WalletState extends State<Wallet> {
                                   );
                                   return;
                                 }
-                                if (double.parse(widget.user.pointsMinLevel
-                                        .toString()) >
+                                if (double.parse(
+                                        widget.user.pointsMinLevel.toString()) >
                                     double.parse(
                                         widget.user.points.toString())) {
                                   Fluttertoast.showToast(
@@ -472,20 +476,17 @@ class _WalletState extends State<Wallet> {
                                     horizontal: 20, vertical: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Theme.of(context)
-                                      .secondaryHeaderColor,
+                                  color: Theme.of(context).secondaryHeaderColor,
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.money,
-                                        color: Colors.grey[200]),
+                                    Icon(Icons.money, color: Colors.grey[200]),
                                     SizedBoxResponsive(
                                       width: 5,
                                     ),
                                     wallet.loadingCredit
                                         ? CupertinoActivityIndicator()
-                                        : TextResponsive(
-                                            'pointsToCredit'.tr(),
+                                        : TextResponsive('pointsToCredit'.tr(),
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 20,
@@ -494,8 +495,8 @@ class _WalletState extends State<Wallet> {
                                 )),
                           ),
                           ContainerResponsive(
-                              margin:
-                                  EdgeInsetsResponsive.symmetric(horizontal: 20),
+                              margin: EdgeInsetsResponsive.symmetric(
+                                  horizontal: 20),
                               width: 2,
                               height: 100,
                               color: Colors.grey[300]),
@@ -505,8 +506,8 @@ class _WalletState extends State<Wallet> {
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     width: 1,
-                                    color: Theme.of(context)
-                                        .secondaryHeaderColor),
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: TextField(
@@ -514,9 +515,8 @@ class _WalletState extends State<Wallet> {
                                 keyboardType: TextInputType.phone,
                                 decoration: InputDecoration(
                                     isDense: true,
-                                    contentPadding:
-                                        EdgeInsetsResponsive.only(
-                                            top: 10, left: 5, right: 5),
+                                    contentPadding: EdgeInsetsResponsive.only(
+                                        top: 10, left: 5, right: 5),
                                     counterText: '',
                                     border: InputBorder.none),
                               )),
@@ -533,10 +533,8 @@ class _WalletState extends State<Wallet> {
                                   );
                                   return;
                                 }
-                                if (int.parse(
-                                        wallet.amount2.text.toString()) >
-                                    int.parse(
-                                        widget.user.credit.toString())) {
+                                if (int.parse(wallet.amount2.text.toString()) >
+                                    int.parse(widget.user.credit.toString())) {
                                   Fluttertoast.showToast(
                                     msg: 'amountGreaterThanCredit'.tr(),
                                     gravity: ToastGravity.BOTTOM,
@@ -556,20 +554,17 @@ class _WalletState extends State<Wallet> {
                                     horizontal: 20, vertical: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Theme.of(context)
-                                      .secondaryHeaderColor,
+                                  color: Theme.of(context).secondaryHeaderColor,
                                 ),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.money,
-                                        color: Colors.grey[200]),
+                                    Icon(Icons.money, color: Colors.grey[200]),
                                     SizedBoxResponsive(
                                       width: 5,
                                     ),
                                     wallet.loadingCash
                                         ? CupertinoActivityIndicator()
-                                        : TextResponsive(
-                                            'creditToCash'.tr(),
+                                        : TextResponsive('creditToCash'.tr(),
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 20,

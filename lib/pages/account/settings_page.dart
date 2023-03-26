@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:customers/main.dart';
 import 'package:customers/models/user.dart';
@@ -8,6 +10,7 @@ import 'package:customers/pages/account/wallet.dart';
 import 'package:customers/pages/auth/login_page.dart';
 import 'package:customers/pages/chat/chat_list_page.dart';
 import 'package:customers/pages/general/notification_page.dart';
+import 'package:customers/pages/orders/map_page.dart';
 import 'package:customers/pages/orders/payment.dart';
 import 'package:customers/pages/orders/withdraw.dart';
 import 'package:customers/providers/account/user_info_provider.dart';
@@ -23,6 +26,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:location/location.dart';
+import 'package:place_picker/place_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_widgets/responsive_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -399,9 +404,20 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         SizedBoxResponsive(height: 30),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            var locationService = Location();
+                            final _myLocation =
+                                await locationService.getLocation();
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => Place()));
+                            // final result = await Navigator.of(context)
+                            //     .push(MaterialPageRoute(
+                            //         builder: (context) => PlacePicker(
+                            //               "YOUR API KEY",
+                            //               displayLocation:
+                            //                   LatLng(2.3555, 0.58988),
+                            //             )));
+                            // log('map result: $result');
                           },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -640,8 +656,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.BOTTOM,
                                             backgroundColor: Colors.white,
-                                            textColor:
-                                                Theme.of(context).accentColor,
+                                            textColor: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
                                             fontSize: 15.0);
                                       }
                                     },

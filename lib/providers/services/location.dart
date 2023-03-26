@@ -1,13 +1,19 @@
+import 'dart:developer';
+
 import 'package:customers/providers/services/last_position_provider.dart';
 import 'package:customers/providers/services/long_lat_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_api_headers/google_api_headers.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:location/location.dart' as l;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:geolocator/geolocator.dart';
 
 class ProductLocation extends StatefulWidget {
   final bool secondPick;
@@ -20,11 +26,23 @@ class ProductLocation extends StatefulWidget {
 }
 
 class ProductLocationState extends State<ProductLocation> {
-  var location = Location();
+  String mapKey = "AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc";
+  Position _pickPosition = Position(
+      longitude: 0,
+      latitude: 0,
+      timestamp: DateTime.now(),
+      accuracy: 1,
+      altitude: 1,
+      heading: 1,
+      speed: 1,
+      speedAccuracy: 1);
+  GoogleMapController _mapController;
+
+  var location = l.Location();
   Completer<GoogleMapController> _controller = Completer();
   LatLng _lastPosition;
   Future _getLocation(BuildContext context) async {
-    LocationData loc;
+    l.LocationData loc;
     try {
       loc = await location.getLocation();
       Provider.of<LongLatProvider>(context, listen: false)
@@ -78,6 +96,13 @@ class ProductLocationState extends State<ProductLocation> {
         return Scaffold(
           body: Stack(
             children: <Widget>[
+              InkWell(
+                // onTap: () => Get.back(),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  // color: AppColors.whiteshade,
+                ),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 24),
                 child: GoogleMap(
@@ -86,6 +111,7 @@ class ProductLocationState extends State<ProductLocation> {
                   initialCameraPosition: _kGooglePlex,
                   onCameraMove: _onCameraMove,
                   onMapCreated: (GoogleMapController controller) {
+                    _mapController = controller;
                     _lastPosition =
                         LatLng(longLatPorivder.lat, longLatPorivder.long);
                     _kLake = CameraPosition(
@@ -100,7 +126,7 @@ class ProductLocationState extends State<ProductLocation> {
                   alignment: Alignment.center,
                   child: Icon(
                     CupertinoIcons.location_solid,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 30,
                   )),
               Align(
@@ -148,7 +174,7 @@ class ProductLocationState extends State<ProductLocation> {
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40),
                         ),
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Center(
                         child: Text(

@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (response.data['Data'] == "true") {
         visitor = false;
-        Navigator.pushReplacementNamed(context, 'home');
+        // Navigator.pushReplacementNamed(context, 'home');
 
         // prefs.setString('user_phone', _phone.toString());
         // prefs.setString('IS_LOGIN', 'true');
@@ -461,7 +461,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               userPhone = '';
                               userImage = 'logo.png';
                             });
-                            Navigator.pushReplacementNamed(context, 'home');
+                            log('text log for navigation');
+                            // Navigator.pushReplacementNamed(context, 'home');
                             Timer(Duration(seconds: 2), () {
                               if (mounted) {
                                 setState(() {

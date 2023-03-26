@@ -43,33 +43,36 @@ class OrderCRUDProvider extends ChangeNotifier {
 
       notifyListeners();
       SharedPreferences pref = await SharedPreferences.getInstance();
-      final body= FormData.fromMap({
-            'time': time,
-            'end_latitude': lat,
-            'end_longitude': long,
-            'customer': pref.getString('userId'),
-            'note': note,
-            'customerName': name,
-            'customerNumber': number,
-            'isGuest': isGuest,
-            'shop': shopId,
-            'Qun': quantity.toString(),
-            'OrderProductIdslist': orderProductList.toString(),
-            'address': address,
-            'city': 1,
-            'paymentMethod': payMethod,
-            'referral_id': ref.toString(),
-            'productNote': notes.toString(),
-            'amount': amount.toString(),
-            'user_id': userId,
-          });
-      var response = await Dio().post(APIKeys.BASE_URL + 'sendOrder',
-          data: body);
-          log('sned order:' + body.fields.toString());
+      var _regionId = pref.getInt('regionId');
+      _regionId = _regionId + 3;
+      log('city Id for send order: $_regionId');
+      final body = FormData.fromMap({
+        'time': time,
+        'end_latitude': lat,
+        'end_longitude': long,
+        'customer': pref.getString('userId'),
+        'note': note,
+        'customerName': name,
+        'customerNumber': number,
+        'isGuest': isGuest,
+        'shop': shopId,
+        'Qun': quantity.toString(),
+        'OrderProductIdslist': orderProductList.toString(),
+        'address': address,
+        'city': 1,
+        'paymentMethod': payMethod,
+        'referral_id': ref.toString(),
+        'productNote': notes.toString(),
+        'amount': amount.toString(),
+        'user_id': userId,
+      });
+      var response =
+          await Dio().post(APIKeys.BASE_URL + 'sendOrder', data: body);
+      log('sned order:' + body.fields.toString());
 
       if (response.data['State'] == "sucess") {
         var data = response.data["Data"];
-        log('-----------   '+data.toString());
+        log('-----------   ' + data.toString());
         var shops = data as List;
         _orderList = shops
             .map<DeliveryHistory>((json) => DeliveryHistory.fromJson(json))

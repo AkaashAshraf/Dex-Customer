@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +32,9 @@ class _PlaceState extends State<Place> {
           ContainerResponsive(
             child: PlacePicker(
               initialPosition: initialPosition,
-              apiKey: 'AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw',
+              apiKey: 'AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc',
               hintText: 'enterLocation'.tr(),
-              automaticallyImplyAppBarLeading: false,
+              automaticallyImplyAppBarLeading: true,
               useCurrentLocation: true,
               selectInitialPosition: true,
               enableMapTypeButton: false,
@@ -53,41 +55,39 @@ class _PlaceState extends State<Place> {
               },
               selectedPlaceWidgetBuilder:
                   (context, selectedPlac, state, isSearching) {
-                return isSearching
-                    ? Container()
-                    : Align(
-                        alignment: Alignment.bottomCenter,
-                        child: GestureDetector(
-                          onTap: () async {
-                            var pref = await SharedPreferences.getInstance();
-                            pref.setBool('locSelected', true);
-                            pref.setDouble(
-                                'lat', selectedPlac.geometry.location.lat);
-                            pref.setDouble(
-                                'long', selectedPlac.geometry.location.lng);
-                            setState(() {
-                              selectedPlace = selectedPlac;
-                            });
-                            Navigator.of(context).pop(selectedPlace);
-                          },
-                          child: ContainerResponsive(
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(10)),
-                              width: 550,
-                              height: 80,
-                              margin: EdgeInsetsResponsive.only(
-                                left: 20,
-                                right: 20,
-                                bottom: 30,
-                              ),
-                              child: Center(
-                                child: TextResponsive('ConfirmLocation'.tr(),
-                                    style: TextStyle(
-                                        fontSize: 27, color: Colors.white)),
-                              )),
+                log('selected plase: $selectedPlac');
+                return Align(
+                  alignment: Alignment.bottomCenter,
+                  child: GestureDetector(
+                    onTap: () async {
+                      var pref = await SharedPreferences.getInstance();
+                      pref.setBool('locSelected', true);
+                      pref.setDouble('lat', selectedPlac.geometry.location.lat);
+                      pref.setDouble(
+                          'long', selectedPlac.geometry.location.lng);
+                      setState(() {
+                        selectedPlace = selectedPlac;
+                      });
+                      Navigator.of(context).pop(selectedPlace);
+                    },
+                    child: ContainerResponsive(
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10)),
+                        width: 550,
+                        height: 80,
+                        margin: EdgeInsetsResponsive.only(
+                          left: 20,
+                          right: 20,
+                          bottom: 30,
                         ),
-                      );
+                        child: Center(
+                          child: TextResponsive('ConfirmLocation'.tr(),
+                              style:
+                                  TextStyle(fontSize: 27, color: Colors.white)),
+                        )),
+                  ),
+                );
               },
             ),
           ),
