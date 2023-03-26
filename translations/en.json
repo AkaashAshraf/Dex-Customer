@@ -424,5 +424,8 @@
   "mobileNumberAndPasswordDoNotMatch": "Mobile number and password do not match",
   "serverErrorPleaseTryAgain": "Server error please try again!",
   "deactivateAccount": "Deactivate Account",
-  "sureToDeactivate": "Are you sure you want to delete this account?"
+  "sureToDeactivate": "Are you sure you want to delete this account?",
+  "ok": "OK",
+  "suspendedAccount": "Your account has been suspended, please contact the support team for more details",
+  "accountSuspended": "Account Suspended"
 }

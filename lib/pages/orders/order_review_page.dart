@@ -359,7 +359,7 @@ class _OrderReviewState extends State<OrderReview> {
                             ),
                             Container(
                               padding: EdgeInsetsResponsive.symmetric(
-                                  horizontal: 35),
+                                  horizontal: 35, vertical: 15),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
@@ -371,35 +371,35 @@ class _OrderReviewState extends State<OrderReview> {
                                             : 'onlinePayment',
                                         style: TextStyle(fontSize: 17),
                                       ).tr()),
-                                  GestureDetector(
-                                    onTap: _isSendOrderSuccess
-                                        ? null
-                                        : () {
-                                            setState(() {
-                                              pay == '1'
-                                                  ? pay = '0'
-                                                  : pay == '0'
-                                                      ? pay = '1'
-                                                      : pay = '0';
-                                            });
-                                          },
-                                    child: ContainerResponsive(
-                                      padding: EdgeInsetsResponsive.symmetric(
-                                          horizontal: 10, vertical: 5),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                              width: 1),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Center(
-                                          child: TextResponsive('change',
-                                                  style:
-                                                      TextStyle(fontSize: 17))
-                                              .tr()),
-                                    ),
-                                  ),
+                                  // GestureDetector(
+                                  //   onTap: _isSendOrderSuccess
+                                  //       ? null
+                                  //       : () {
+                                  //           setState(() {
+                                  //             pay == '1'
+                                  //                 ? pay = '0'
+                                  //                 : pay == '0'
+                                  //                     ? pay = '1'
+                                  //                     : pay = '0';
+                                  //           });
+                                  //         },
+                                  //   child: ContainerResponsive(
+                                  //     padding: EdgeInsetsResponsive.symmetric(
+                                  //         horizontal: 10, vertical: 5),
+                                  //     decoration: BoxDecoration(
+                                  //         border: Border.all(
+                                  //             color:
+                                  //                 Theme.of(context).accentColor,
+                                  //             width: 1),
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(5)),
+                                  //     child: Center(
+                                  //         child: TextResponsive('change',
+                                  //                 style:
+                                  //                     TextStyle(fontSize: 17))
+                                  //             .tr()),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -834,78 +834,85 @@ class _OrderReviewState extends State<OrderReview> {
                                                     false &&
                                                 !_isSendOrderSuccess) {
                                               if (pay == '1') {
-                                                await orderProvider.sendOrder(
-                                                    context: context,
-                                                    time: widget.time,
-                                                    name: userName,
-                                                    number: userPhone,
-                                                    isGuest:
-                                                        visitor == true ? 1 : 0,
-                                                    lat: longLatProvider.lat,
-                                                    long: longLatProvider.long,
-                                                    address: location,
-                                                    note: note,
-                                                    shopId: provider,
-                                                    ref: cartProvider.refrences,
-                                                    orderProductList:
-                                                        cartProvider
-                                                            .orderProductList,
-                                                    quantity:
-                                                        cartProvider.quantity,
-                                                    notes: cartProvider.notes,
-                                                    amount: total
-                                                        .toStringAsFixed(3),
-                                                    userId: userId,
-                                                    payMethod: pay);
+                                                final isActive =
+                                                    await orderProvider
+                                                        .checkAccount(context);
+                                                if (isActive) {
+                                                  await orderProvider.sendOrder(
+                                                      context: context,
+                                                      time: widget.time,
+                                                      name: userName,
+                                                      number: userPhone,
+                                                      isGuest: visitor == true
+                                                          ? 1
+                                                          : 0,
+                                                      lat: longLatProvider.lat,
+                                                      long:
+                                                          longLatProvider.long,
+                                                      address: location,
+                                                      note: note,
+                                                      shopId: provider,
+                                                      ref: cartProvider
+                                                          .refrences,
+                                                      orderProductList:
+                                                          cartProvider
+                                                              .orderProductList,
+                                                      quantity:
+                                                          cartProvider.quantity,
+                                                      notes: cartProvider.notes,
+                                                      amount: total
+                                                          .toStringAsFixed(3),
+                                                      userId: userId,
+                                                      payMethod: pay);
 
-                                                if (orderProvider
-                                                        .isSuccessful !=
-                                                    null) {
                                                   if (orderProvider
                                                           .isSuccessful !=
                                                       null) {
                                                     if (orderProvider
-                                                        .isSuccessful) {
-                                                      _isSendOrderSuccess =
-                                                          orderProvider
-                                                              .isSuccessful;
+                                                            .isSuccessful !=
+                                                        null) {
+                                                      if (orderProvider
+                                                          .isSuccessful) {
+                                                        _isSendOrderSuccess =
+                                                            orderProvider
+                                                                .isSuccessful;
 
-                                                      // if (pay == '0') {
-                                                      // _buildPaymentBottomSheet(
-                                                      //     orderProvider,
-                                                      //     cartProvider);
-                                                      Fluttertoast.showToast(
-                                                          msg: 'orderCreated'
-                                                              .tr(),
-                                                          toastLength: Toast
-                                                              .LENGTH_SHORT,
-                                                          gravity: ToastGravity
-                                                              .BOTTOM,
-                                                          backgroundColor:
-                                                              Colors.green,
-                                                          textColor:
-                                                              Colors.white,
-                                                          fontSize: 16.0);
-                                                      // } else {
-                                                      Provider.of<LongLatProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .setLoc(
-                                                              lat: null,
-                                                              long: null);
-                                                      Provider.of<CartProvider>(
-                                                              context,
-                                                              listen: false)
-                                                          .clearCart();
-                                                      Navigator.pushReplacement(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  OrderDone(
-                                                                      order: orderProvider
-                                                                              .orderList[
-                                                                          0])));
-                                                      // }
+                                                        // if (pay == '0') {
+                                                        // _buildPaymentBottomSheet(
+                                                        //     orderProvider,
+                                                        //     cartProvider);
+                                                        Fluttertoast.showToast(
+                                                            msg: 'orderCreated'
+                                                                .tr(),
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .BOTTOM,
+                                                            backgroundColor:
+                                                                Colors.green,
+                                                            textColor:
+                                                                Colors.white,
+                                                            fontSize: 16.0);
+                                                        // } else {
+                                                        Provider.of<LongLatProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .setLoc(
+                                                                lat: null,
+                                                                long: null);
+                                                        Provider.of<CartProvider>(
+                                                                context,
+                                                                listen: false)
+                                                            .clearCart();
+                                                        Navigator.pushReplacement(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    OrderDone(
+                                                                        order: orderProvider
+                                                                            .orderList[0])));
+                                                      }
                                                     } else {
                                                       Fluttertoast.showToast(
                                                           msg:
@@ -923,10 +930,15 @@ class _OrderReviewState extends State<OrderReview> {
                                                   }
                                                 }
                                               } else if (pay == '0') {
-                                                _buildPaymentBottomSheet(
-                                                    orderProvider,
-                                                    cartProvider,
-                                                    longLatProvider);
+                                                final isActive =
+                                                    await orderProvider
+                                                        .checkAccount(context);
+                                                if (isActive) {
+                                                  _buildPaymentBottomSheet(
+                                                      orderProvider,
+                                                      cartProvider,
+                                                      longLatProvider);
+                                                }
                                               }
                                             } else if (pay == '0' &&
                                                 orderProvider.orderList.length >
@@ -994,8 +1006,7 @@ class _OrderReviewState extends State<OrderReview> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     userId = pref.getString('userId');
     // String jsonString = jsonEncode(paymentJson(orderProvider.orderList[0]));
-    String jsonString =
-        jsonEncode(productListData( cartProvider));
+    String jsonString = jsonEncode(productListData(cartProvider));
     Provider.of<OnlinePaymentProvider>(context, listen: false).webStarted();
 
     showModalBottomSheet(
@@ -1048,11 +1059,11 @@ class _OrderReviewState extends State<OrderReview> {
                                         userId.toString() +
                                         '&total_amount=' +
                                         total.toStringAsFixed(3) +
-                                        '&status=Order' 
-                                        // '&order_id=' +
-                                        // orderProvider.orderList[0].orderInfo.id
-                                        //     .toString()
-                                            )),
+                                        '&status=Order'
+                                    // '&order_id=' +
+                                    // orderProvider.orderList[0].orderInfo.id
+                                    //     .toString()
+                                    )),
                                 headers: {
                                   'Content-Type':
                                       'application/x-www-form-urlencoded'
@@ -1128,7 +1139,7 @@ class _OrderReviewState extends State<OrderReview> {
     return {
       'name': product.product.name == null || product.product.name == ''
           ? 'product'
-          :product.product.name,
+          : product.product.name,
       'quantity': 1,
       'unit_amount': (productPrice * 1000).roundToDouble(),
     };
@@ -1139,7 +1150,7 @@ class _OrderReviewState extends State<OrderReview> {
         Provider.of<OrderCRUDProvider>(context, listen: false).price +
             (cartProvider.totalCost * vat) +
             totalTax;
-            log('text: $totalTextAndDeliveryPrice');
+    log('text: $totalTextAndDeliveryPrice');
     return {
       'name': "deliver charges",
       'quantity': 1,
@@ -1147,24 +1158,25 @@ class _OrderReviewState extends State<OrderReview> {
     };
   }
 
-  List<Map<String, dynamic>> productListData( CartProvider cartProvider) {
+  List<Map<String, dynamic>> productListData(CartProvider cartProvider) {
     List<Map<String, dynamic>> products = [];
     double productPrice = 0.0;
-    if(cartProvider.cartItems != null)
-    {for (int i = 0; i < cartProvider.cartItems.length; i++) {
-      if (cartProvider.cartItems[i].product.parent == 0) {
-            productPrice = cartProvider.cartItems[i].total;
-            for (int v = 0; v < cartProvider.cartItems[i].children.length; v++) {
-              productPrice +=
-                  cartProvider.cartItems[i].children[v].total * cartProvider.cartItems[i].quantity;
-            }
-            if ((productPrice * 1.0) < 0.1) {
-      } else {
-        products.add(productToJson(cartProvider.cartItems[i], productPrice));
-      }
+    if (cartProvider.cartItems != null) {
+      for (int i = 0; i < cartProvider.cartItems.length; i++) {
+        if (cartProvider.cartItems[i].product.parent == 0) {
+          productPrice = cartProvider.cartItems[i].total;
+          for (int v = 0; v < cartProvider.cartItems[i].children.length; v++) {
+            productPrice += cartProvider.cartItems[i].children[v].total *
+                cartProvider.cartItems[i].quantity;
           }
-      
-    }}
+          if ((productPrice * 1.0) < 0.1) {
+          } else {
+            products
+                .add(productToJson(cartProvider.cartItems[i], productPrice));
+          }
+        }
+      }
+    }
     products.add(deliveryCargesJson(cartProvider));
     return products;
   }

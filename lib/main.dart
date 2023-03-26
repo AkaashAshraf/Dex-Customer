@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:customers/providers/api/api_provider.dart';
 import 'package:customers/providers/package/package_provider.dart';
 import 'package:customers/providers/payment_provider/online_payment_provider.dart';
+import 'package:customers/widgets/suspended_account_dialog.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:customers/app.dart';
@@ -328,14 +329,14 @@ class _MyHomePageState extends State<MyHomePage> {
     FirebaseDynamicLinks.instance.onLink(
         onSuccess: (PendingDynamicLinkData dynamicLink) async {
       final Uri deepLink = dynamicLink?.link;
-
+      log('dynamicLink: $deepLink');
       if (deepLink != null) {
         setState(() {
           main = true;
           productId = deepLink.queryParameters['product'];
           id = deepLink.queryParameters['refrenced'];
           name = deepLink.queryParameters['name'];
-          print("$id | $productId | $name");
+          print('dynamicLink' + "$deepLink $id | $productId | $name");
         });
       } else {
         setState(() {
@@ -343,7 +344,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       }
     }, onError: (OnLinkErrorException e) async {
-      print(e.message);
+      log('dynamicLink' + e.message);
     });
 
     final PendingDynamicLinkData data =
@@ -356,7 +357,7 @@ class _MyHomePageState extends State<MyHomePage> {
         productId = deepLink.queryParameters['product'];
         id = deepLink.queryParameters['refrence'];
         name = deepLink.queryParameters['name'];
-        print("$id | $productId | $name");
+        log('dynamicLink' + " $deepLink $id | $productId | $name");
       });
     } else {
       setState(() {

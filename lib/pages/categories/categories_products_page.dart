@@ -111,10 +111,10 @@ class _CategoryProductHomeState extends State<CategoryProductHome> {
       getProducts(product.name.toString());
       await Provider.of<CategoyProductProvider>(context, listen: false)
           .getProductChildren(id: product.id, section: provider.sections);
-      
+
       childs =
           Provider.of<CategoyProductProvider>(context, listen: false).children;
-          log(childs.toString());
+      log(childs.toString());
       scrollController.addListener(() {
         if (scrollController.position.pixels ==
                 scrollController.position.maxScrollExtent &&

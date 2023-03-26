@@ -549,7 +549,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               builder: (context) => AlertDialog(
                                 content: ListTile(
                                   title: Text(
-                                    "logout",
+                                    "logout".tr(),
                                   ),
                                   subtitle: Text(
                                     "sureToLogout",

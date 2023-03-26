@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:customers/models/delivery_history.dart';
 import 'package:customers/repositories/api_keys.dart';
+import 'package:customers/repositories/globals.dart';
+import 'package:customers/widgets/suspended_account_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart' show ChangeNotifier, BuildContext;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +20,36 @@ class OrderCRUDProvider extends ChangeNotifier {
   double get price => _deliveryPrice;
   bool _isUpdateStatusSuccess;
   bool get isUpdateStatusSuccess => _isUpdateStatusSuccess;
+
+  Future<bool> checkAccount(BuildContext context) async {
+    try {
+      _loading = true;
+      notifyListeners();
+      final url = APIKeys.BASE_URL + 'check-account';
+      final formData = FormData.fromMap({'userid': userId});
+      var response = await dioClient.post(url, data: formData);
+      Map data = jsonDecode(response.data);
+      log('$url: $data : ${formData.fields}');
+      if (data['status'].toString() == '1') {
+        if (data['boolean'] == false) {
+          showSuspendedAccountDialog(context);
+          _loading = false;
+          notifyListeners();
+          return false;
+        }
+      }
+      return true;
+    } on DioError catch (error) {
+      _loading = false;
+      notifyListeners();
+      return true;
+    } catch (error) {
+      _loading = false;
+      notifyListeners();
+      log('checkAccount $error');
+      return true;
+    }
+  }
 
   Future<dynamic> sendOrder(
       {var lat,
@@ -43,9 +76,9 @@ class OrderCRUDProvider extends ChangeNotifier {
 
       notifyListeners();
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var _regionId = pref.getInt('regionId');
-      _regionId = _regionId + 3;
-      log('city Id for send order: $_regionId');
+      // var _regionId = pref.getInt('regionId');
+      // _regionId = _regionId + 3;
+      // log('city Id for send order: $_regionId');
       final body = FormData.fromMap({
         'time': time,
         'end_latitude': lat,

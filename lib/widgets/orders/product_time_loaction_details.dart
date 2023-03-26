@@ -35,7 +35,7 @@ class _ProductTimeAndLocationDetailsState
   _ProductTimeAndLocationDetailsState(this.provider);
 
   Future<Null> _selectTime(BuildContext context) async {
-    final TimeOfDay picked_s = await showTimePicker(
+    final TimeOfDay pickedS = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
         builder: (BuildContext context, Widget child) {
@@ -45,9 +45,9 @@ class _ProductTimeAndLocationDetailsState
           );
         });
 
-    if (picked_s != null && picked_s != selectedTime)
+    if (pickedS != null && pickedS != selectedTime)
       setState(() {
-        selectedTime = picked_s;
+        selectedTime = pickedS;
         time.text =
             selectedTime.hour.toString() + ':' + selectedTime.minute.toString();
       });
@@ -64,7 +64,7 @@ class _ProductTimeAndLocationDetailsState
   TextEditingController visitorName = TextEditingController();
   TextEditingController visitorNum = TextEditingController();
   // var activeLanguage = 0;
-  bool isOnlinePayment = false;
+  bool isOnlinePayment = true;
 
   Future<void> _showAlertDialog() async {
     return showDialog(
@@ -366,7 +366,9 @@ class _ProductTimeAndLocationDetailsState
                       ),
                     ),
                     ContainerResponsive(
-                        height: 1, color: Colors.black, width: MediaQuery.of(context).size.width * .6),
+                        height: 1,
+                        color: Colors.black,
+                        width: MediaQuery.of(context).size.width * .6),
                     ContainerResponsive(
                       height: 40,
                       width: 40,
@@ -392,7 +394,9 @@ class _ProductTimeAndLocationDetailsState
                       ),
                     ),
                     ContainerResponsive(
-                        height: 1, color: Colors.black, width: MediaQuery.of(context).size.width * .6),
+                        height: 1,
+                        color: Colors.black,
+                        width: MediaQuery.of(context).size.width * .6),
                     ContainerResponsive(
                       height: 40,
                       width: 40,
@@ -899,54 +903,54 @@ class _ProductTimeAndLocationDetailsState
                             )),
                       ),
                     ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isOnlinePayment = false;
-                          });
-                        },
-                        child: Container(
-                            padding:
-                                EdgeInsetsResponsive.only(right: 20, left: 20),
-                            // width: 200,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: context.locale.languageCode == 'ar'
-                                    ? Radius.circular(10)
-                                    : Radius.zero,
-                                bottomLeft: context.locale.languageCode == 'ar'
-                                    ? Radius.circular(10)
-                                    : Radius.zero,
-                                bottomRight: context.locale.languageCode == 'ar'
-                                    ? Radius.zero
-                                    : Radius.circular(10),
-                                topRight: context.locale.languageCode == 'ar'
-                                    ? Radius.zero
-                                    : Radius.circular(10),
-                              ),
-                              color: Colors.black,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  child: Center(
-                                    child: Text(
-                                      'payOnDelivery'.tr(),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                isOnlinePayment
-                                    ? Container()
-                                    : Icon(Icons.check_circle,
-                                        color: Colors.white)
-                              ],
-                            )),
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       setState(() {
+                    //         isOnlinePayment = false;
+                    //       });
+                    //     },
+                    //     child: Container(
+                    //         padding:
+                    //             EdgeInsetsResponsive.only(right: 20, left: 20),
+                    //         // width: 200,
+                    //         height: 45,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.only(
+                    //             topLeft: context.locale.languageCode == 'ar'
+                    //                 ? Radius.circular(10)
+                    //                 : Radius.zero,
+                    //             bottomLeft: context.locale.languageCode == 'ar'
+                    //                 ? Radius.circular(10)
+                    //                 : Radius.zero,
+                    //             bottomRight: context.locale.languageCode == 'ar'
+                    //                 ? Radius.zero
+                    //                 : Radius.circular(10),
+                    //             topRight: context.locale.languageCode == 'ar'
+                    //                 ? Radius.zero
+                    //                 : Radius.circular(10),
+                    //           ),
+                    //           color: Colors.black,
+                    //         ),
+                    //         child: Row(
+                    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //           children: [
+                    //             Container(
+                    //               child: Center(
+                    //                 child: Text(
+                    //                   'payOnDelivery'.tr(),
+                    //                   style: TextStyle(color: Colors.white),
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //             isOnlinePayment
+                    //                 ? Container()
+                    //                 : Icon(Icons.check_circle,
+                    //                     color: Colors.white)
+                    //           ],
+                    //         )),
+                    //   ),
+                    // ),
                   ],
                 ),
               )

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,13 +18,14 @@ class LinkProvider extends ChangeNotifier {
       String name,
       String pic,
       String productName}) async {
+    https: //delieryx.page.link
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: "https://delieryx.page.link",
+      uriPrefix: "https://dexoman.page.link",
       link: Uri.parse(
-          "https://delieryx.page.link/share/?product=$title&refrence=$id&name=$name"),
+          "https://dexoman.page.link/share/?product=$title&refrence=$id&name=$name"),
       androidParameters: AndroidParameters(
         packageName: "thiqatech.dex.customer",
-        minimumVersion: 0,
+        minimumVersion: 1,
       ),
       dynamicLinkParametersOptions: DynamicLinkParametersOptions(
         shortDynamicLinkPathLength: ShortDynamicLinkPathLength.short,
@@ -41,7 +43,8 @@ class LinkProvider extends ChangeNotifier {
     );
     _link = await parameters.buildUrl();
     print(_link.query);
-    var apikey = 'AIzaSyAWZAXT4QKXiFnY9foIZYM_yNqC_kOG9Rc';
+    var apikey = 'AIzaSyB_ECI3UTKCoCgBZ8UwBJBRG1RB2MqZOVg';
+    // var apikey = 'AIzaSyAWZAXT4QKXiFnY9foIZYM_yNqC_kOG9Rc';
     var response = await http.post(
         Uri.parse(
             'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=$apikey'),
@@ -49,6 +52,7 @@ class LinkProvider extends ChangeNotifier {
           "longDynamicLink": _link.toString(),
         });
     var shortLink = json.decode(response.body)['shortLink'];
+    log('shortLink: $shortLink');
     _shortLink = shortLink;
   }
 }

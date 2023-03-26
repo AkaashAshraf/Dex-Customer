@@ -424,5 +424,7 @@
     "mobileNumberAndPasswordDoNotMatch": "رقم الجوال وكلمة المرور غير متطابقين",
     "serverErrorPleaseTryAgain": "خطأ في الخادم ، يرجى المحاولة مرة أخرى!",
     "deactivateAccount": "تعطيل الحساب",
-    "sureToDeactivate": "هل أنت متأكد أنك تريد حذف هذا الحساب؟"
+    "sureToDeactivate": "هل أنت متأكد أنك تريد حذف هذا الحساب؟",
+    "ok": "نعم",
+    "suspendedAccount": "تم تعليق حسابك ، يرجى الاتصال بفريق الدعم للحصول على مزيد من التفاصيل"
 }

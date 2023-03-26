@@ -1,11 +1,16 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:customers/pages/account/settings_page.dart';
 import 'package:customers/pages/categories/category_page.dart';
 import 'package:customers/pages/chat/chat_list_page.dart';
 import 'package:customers/pages/orders/orders_page.dart';
+import 'package:customers/repositories/api_keys.dart';
 import 'package:customers/repositories/globals.dart';
+import 'package:customers/widgets/suspended_account_dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +55,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
     _tabController = TabController(
         vsync: this, length: pages.length, initialIndex: bottomSelectedIndex);
+    checkAccount();
+  }
+
+  Future checkAccount() async {
+    try {
+      final url = APIKeys.BASE_URL + 'check-account';
+      final formData = FormData.fromMap({'userid': userId});
+      var response = await dioClient.post(url, data: formData);
+      Map data = jsonDecode(response.data);
+      log('$url: $data id: ${formData.fields}');
+      if (data['status'].toString() == '1') {
+        if (data['boolean'] == false) {
+          showSuspendedAccountDialog(context);
+        }
+      }
+    } on DioError catch (error) {
+      log('error: $error');
+      switch (error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.sendTimeout:
+        case DioErrorType.cancel:
+          throw error;
+          break;
+        default:
+          throw error;
+      }
+    } catch (error) {
+      log('checkAccount $error');
+    }
   }
 
   void fFt() async {

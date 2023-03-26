@@ -45,7 +45,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="delieryx.page.link" android:pathPattern=".*" android:scheme="https" />
+                <data android:host="dexoman.page.link" android:pathPattern=".*" android:scheme="https" />
 
             </intent-filter>
             <intent-filter>

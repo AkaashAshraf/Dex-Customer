@@ -462,7 +462,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               userImage = 'logo.png';
                             });
                             log('text log for navigation');
-                            // Navigator.pushReplacementNamed(context, 'home');
+                            Navigator.pushReplacementNamed(context, 'home');
                             Timer(Duration(seconds: 2), () {
                               if (mounted) {
                                 setState(() {
