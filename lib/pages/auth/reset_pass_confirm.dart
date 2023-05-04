@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pin_input_text_field/pin_input_text_field.dart';
+// import 'package:pin_input_text_field/pin_input_text_field.dart';
 import 'package:responsive_widgets/responsive_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pin_input_text_field/pin_input_text_field.dart';
 
 class ConfirmReset extends StatefulWidget {
   @override
