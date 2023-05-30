@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 // this is new update
 import 'package:customers/providers/api/api_provider.dart';
 import 'package:customers/providers/package/package_provider.dart';
 import 'package:customers/providers/payment_provider/online_payment_provider.dart';
-import 'package:customers/widgets/suspended_account_dialog.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:customers/app.dart';
@@ -43,7 +41,6 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -59,7 +56,6 @@ import 'providers/orders/rate_provider.dart';
 import 'providers/services/fav_provider.dart';
 import 'providers/services/location.dart';
 import 'repositories/globals.dart';
-import 'package:device_preview/device_preview.dart';
 
 Future<dynamic> _backgroundMessageHandler(Map<String, dynamic> message) async {
   await Firebase.initializeApp();

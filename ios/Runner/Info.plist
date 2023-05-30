@@ -6,6 +6,10 @@
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	</array>
+	 <key>NSLocationAlwaysUsageDescription</key>
+    <string>Application need location permission to provide you best service providers near you</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Application need location permission to provide you best service providers near you</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

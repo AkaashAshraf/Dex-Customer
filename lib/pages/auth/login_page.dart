@@ -149,7 +149,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       var response = await dioClient.get(
           APIKeys.BASE_URL + 'sendToken/Userid=$userId&token=$token&appId=1');
-
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CodeValidation(
+                    phoneNumber: userPhone,
+                  )));
       print('TOKEN RESPONSE $response');
 
       Fluttertoast.showToast(
@@ -160,13 +165,6 @@ class _LoginScreenState extends State<LoginScreen> {
           textColor: Theme.of(context).accentColor,
           fontSize: 15.0);
       user = User.fromJson(response.data);
-
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => CodeValidation(
-                    phoneNumber: userPhone,
-                  )));
 
       setState(() {
         loading = false;

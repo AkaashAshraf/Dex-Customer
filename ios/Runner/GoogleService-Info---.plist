@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>790395124070-brfh1o7ikmat4ve0ulkurh8c7p26dtqj.apps.googleusercontent.com</string>
+	<string>628815331732-ppkh7qrlmrndv2dm2urfa1pbimph0oca.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.790395124070-brfh1o7ikmat4ve0ulkurh8c7p26dtqj</string>
+	<string>com.googleusercontent.apps.628815331732-ppkh7qrlmrndv2dm2urfa1pbimph0oca</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAfMV7QRaHrFPjQ5RELoYlhpJdFe7tV8bc</string>
+	<string>AIzaSyC5c8-fYw4vGKMkzP99fG6H58JYTAOtQhw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>790395124070</string>
+	<string>628815331732</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>thiqa.dexoman.customer</string>
+	<string>com.ozman.ahlanwasahlan</string>
 	<key>PROJECT_ID</key>
-	<string>dexoman-7559f</string>
+	<string>ahlan-wasahlan</string>
 	<key>STORAGE_BUCKET</key>
-	<string>dexoman-7559f.appspot.com</string>
+	<string>ahlan-wasahlan.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:790395124070:ios:b0da73ca228c800f71b0a7</string>
+	<string>1:628815331732:ios:19e144a9065cd57bd88f81</string>
+	<key>DATABASE_URL</key>
+	<string>https://ahlan-wasahlan.firebaseio.com</string>
 </dict>
 </plist>
