@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 # Miscellaneous
+.fvm/flutter_sdk
 *.class
 *.log
 *.pyc

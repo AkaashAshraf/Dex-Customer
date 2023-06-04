@@ -892,34 +892,33 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                       SizedBoxResponsive(height: 30),
-                                      selected == 2
-                                          ? Container()
-                                          : ContainerResponsive(
-                                              padding: EdgeInsetsResponsive
-                                                  .symmetric(horizontal: 20),
-                                              child: Row(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.of(context).push(
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Scaffold(
-                                                                        body: BetterPlayer.network(
-                                                                            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"),
-                                                                      )));
-                                                    },
-                                                    child: TextResponsive(
-                                                      'whatOrder'.tr(),
-                                                      style: TextStyle(
-                                                        fontSize: 35,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                      selected == 2 ? Container() : Container(),
+                                      // : ContainerResponsive(
+                                      //     padding: EdgeInsetsResponsive
+                                      //         .symmetric(horizontal: 20),
+                                      //     child: Row(
+                                      //       children: [
+                                      //         GestureDetector(
+                                      //           onTap: () {
+                                      //             Navigator.of(context).push(
+                                      //                 MaterialPageRoute(
+                                      //                     builder:
+                                      //                         (context) =>
+                                      //                             Scaffold(
+                                      //                               body: BetterPlayer.network(
+                                      //                                   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"),
+                                      //                             )));
+                                      //           },
+                                      //           child: TextResponsive(
+                                      //             'whatOrder'.tr(),
+                                      //             style: TextStyle(
+                                      //               fontSize: 35,
+                                      //             ),
+                                      //           ),
+                                      //         ),
+                                      //       ],
+                                      //     ),
+                                      //   ),
                                       SizedBoxResponsive(height: 10),
                                     ]),
                                   ),

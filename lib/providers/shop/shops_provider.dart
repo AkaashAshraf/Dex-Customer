@@ -82,7 +82,7 @@ class ShopsProvider extends ChangeNotifier {
 
   Future getResByRegion({int regionId, bool alone}) async {
     try {
-      print('GET SHOP START');
+      log('GET SHOP START');
       if (alone != true) {
         _loading = true;
       }

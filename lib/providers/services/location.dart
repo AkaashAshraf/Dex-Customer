@@ -81,6 +81,7 @@ class ProductLocationState extends State<ProductLocation> {
               Container(
                 margin: EdgeInsets.only(top: 24),
                 child: GoogleMap(
+                  // key: "AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc",
                   myLocationEnabled: true,
                   mapType: MapType.normal,
                   initialCameraPosition: _kGooglePlex,

@@ -11,7 +11,6 @@ import 'package:customers/providers/shop/shops_provider.dart';
 import 'package:customers/repositories/api_keys.dart';
 import 'package:customers/repositories/globals.dart';
 import 'package:customers/widgets/general/loading.dart';
-import 'package:customers/widgets/story/story.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -381,9 +380,9 @@ class _State extends State<AllStores> {
         print('end');
         widget.section == 'store'
             ? Provider.of<ShopsProvider>(context, listen: false)
-                .getMoreShopsByRegion(allshops: true)
+                .getMoreShopsByRegion(allshops: false)
             : Provider.of<ShopsProvider>(context, listen: false)
-                .getMoreResByRegion(allshops: true);
+                .getMoreResByRegion(allshops: false);
       }
     });
   }

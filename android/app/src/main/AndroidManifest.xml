@@ -25,9 +25,11 @@
     <!--    <uses-permission android:name=-->
     <!--        "android.permission.ACCESS_FINE_LOCATION"/>-->
 
-    <application android:label="DEX" android:icon="@mipmap/launcher_icon" android:usesCleartextTraffic="true">
+    <application android:label="DEX" android:icon="@mipmap/launcher_icon" android:usesCleartextTraffic="true"
+    android:requestLegacyExternalStorage="true"
+    >
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw" />
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
 
         <activity android:name="io.flutter.embedding.android.FlutterActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
@@ -53,6 +55,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <service
+    android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+<receiver
+    android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingReceiver"
+    android:enabled="true"
+    android:exported="true"
+    android:permission="com.google.android.c2dm.permission.SEND">
+    <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <category android:name="${applicationId}" />
+    </intent-filter>
+</receiver>
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <intent-filter>

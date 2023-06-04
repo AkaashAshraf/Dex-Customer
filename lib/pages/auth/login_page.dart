@@ -102,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
       log('user token ${response.data}');
 
       var data = response.data;
+      sendToken('${data['id']}', userPhone);
       user = User.fromJson(response.data);
       prefs.setString('userId', '${data['id']}');
       prefs.setString('userImage', '${data['image']}');
@@ -113,8 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
       prefs.setString('user_email', user.email.toString());
       prefs.setString('password', user.password.toString());
       prefs.setString('IS_LOGIN', 'true');
-
-      sendToken('${data['id']}', userPhone);
 
 //      print(user);
     } on DioError catch (error) {

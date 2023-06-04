@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker/google_maps_place_picker.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class _PlaceState extends State<Place> {
           ContainerResponsive(
             child: PlacePicker(
               initialPosition: initialPosition,
-              apiKey: 'AIzaSyD24UJE5__LvBFf6IvrYfVz7Lof9vy8jJw',
+              apiKey: 'AIzaSyCaw8QnvSlitKZNRIQvJ_KwhzvWfmJORWc',
               hintText: 'enterLocation'.tr(),
               automaticallyImplyAppBarLeading: false,
               useCurrentLocation: true,
@@ -53,6 +55,7 @@ class _PlaceState extends State<Place> {
               },
               selectedPlaceWidgetBuilder:
                   (context, selectedPlac, state, isSearching) {
+                print('isSearchingr' + '$selectedPlac');
                 return isSearching
                     ? Container()
                     : Align(
