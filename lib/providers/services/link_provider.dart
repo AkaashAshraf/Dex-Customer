@@ -22,14 +22,14 @@ class LinkProvider extends ChangeNotifier {
       link: Uri.parse(
           "https://delieryx.page.link/share/?product=$title&refrence=$id&name=$name"),
       androidParameters: AndroidParameters(
-        packageName: "xzone.dex.customers",
+        packageName: "thiqatech.dex.customer",
         minimumVersion: 0,
       ),
       dynamicLinkParametersOptions: DynamicLinkParametersOptions(
         shortDynamicLinkPathLength: ShortDynamicLinkPathLength.short,
       ),
       iosParameters: IosParameters(
-        bundleId: 'xzone.dex.customers',
+        bundleId: 'thiqatech.dex.customer',
         minimumVersion: "0",
       ),
       socialMetaTagParameters: SocialMetaTagParameters(

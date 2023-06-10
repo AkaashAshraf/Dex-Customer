@@ -1,49 +1,40 @@
 {
   "project_info": {
-    "project_number": "731645157617",
-    "firebase_url": "https://deliveryx-3ca16.firebaseio.com",
-    "project_id": "deliveryx-3ca16",
-    "storage_bucket": "deliveryx-3ca16.appspot.com"
+    "project_number": "790395124070",
+    "project_id": "dexoman-7559f",
+    "storage_bucket": "dexoman-7559f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731645157617:android:9a768aa598260ebee10950",
+        "mobilesdk_app_id": "1:790395124070:android:7f6167a7322ecb5071b0a7",
         "android_client_info": {
-          "package_name": "xzone.deliveryX.deliery"
+          "package_name": "thiqatech.dex.customer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731645157617-13pa9ui6p5a3ckq1fc097bmcbfq1gdmb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "xzone.deliveryX.deliery",
-            "certificate_hash": "053bbe20ff0525834b9127bc9db91870d8b33f4e"
-          }
-        },
-        {
-          "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+          "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAWZAXT4QKXiFnY9foIZYM_yNqC_kOG9Rc"
+          "current_key": "AIzaSyB_ECI3UTKCoCgBZ8UwBJBRG1RB2MqZOVg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+              "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "731645157617-68fdijj656d4sfjnlubhi6vc5tmqb8em.apps.googleusercontent.com",
+              "client_id": "790395124070-6p0qtj9m5t26cd82318sjhhbnlutgiir.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "xzone.deliveryx.customer"
+                "bundle_id": "thiqatech.dex.customer"
               }
             }
           ]
@@ -52,50 +43,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731645157617:android:ed20c71fe5851b47e10950",
+        "mobilesdk_app_id": "1:790395124070:android:59c6d9a32dcafdbe71b0a7",
         "android_client_info": {
-          "package_name": "xzone.dex.customers"
+          "package_name": "thiqatech.dex.driver"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731645157617-98bf0mm39l24i6s0258jibp6dpr1cutg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "xzone.dex.customers",
-            "certificate_hash": "aa56654fe19eb7a366fa26ab096652a47d1bb394"
-          }
-        },
-        {
-          "client_id": "731645157617-sqk2jvfht7ldudf7qr2ccd0tieet5h6p.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "xzone.dex.customers",
-            "certificate_hash": "053bbe20ff0525834b9127bc9db91870d8b33f4e"
-          }
-        },
-        {
-          "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+          "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAWZAXT4QKXiFnY9foIZYM_yNqC_kOG9Rc"
+          "current_key": "AIzaSyB_ECI3UTKCoCgBZ8UwBJBRG1RB2MqZOVg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+              "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "731645157617-68fdijj656d4sfjnlubhi6vc5tmqb8em.apps.googleusercontent.com",
+              "client_id": "790395124070-6p0qtj9m5t26cd82318sjhhbnlutgiir.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "xzone.deliveryx.customer"
+                "bundle_id": "thiqatech.dex.customer"
               }
             }
           ]
@@ -104,34 +79,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731645157617:android:75d14b9fe55bfb90e10950",
+        "mobilesdk_app_id": "1:790395124070:android:cb77c7f341347b2971b0a7",
         "android_client_info": {
-          "package_name": "xzone.dex.provider"
+          "package_name": "thiqatech.dex.vendor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+          "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAWZAXT4QKXiFnY9foIZYM_yNqC_kOG9Rc"
+          "current_key": "AIzaSyB_ECI3UTKCoCgBZ8UwBJBRG1RB2MqZOVg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "731645157617-e0rif082qpbb8a441hd8nvcn3naf11t1.apps.googleusercontent.com",
+              "client_id": "790395124070-u8nnpusikjk3g8erg6mtp4ohsd7ikr82.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "731645157617-68fdijj656d4sfjnlubhi6vc5tmqb8em.apps.googleusercontent.com",
+              "client_id": "790395124070-6p0qtj9m5t26cd82318sjhhbnlutgiir.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "xzone.deliveryx.customer"
+                "bundle_id": "thiqatech.dex.customer"
               }
             }
           ]
