@@ -6,6 +6,8 @@
         // mavenLocal()
          // jcenter()
          google()
+         mavenCentral()
+        mavenLocal()
         jcenter()
         
     }
@@ -32,17 +34,17 @@
 
 allprojects {
     repositories {
-        // google()
-        // mavenCentral()
-        // mavenLocal()
-        // jcenter()
-        // mavenCentral {
-        //     content {
-        //         excludeGroupByRegex "com\\.google\\.android\\.gms"
-        //     }
-        // }
         google()
+        mavenCentral()
+        mavenLocal()
         jcenter()
+        mavenCentral {
+            content {
+                excludeGroupByRegex "com\\.google\\.android\\.gms"
+            }
+        }
+        // google()
+        // jcenter()
     }
 }
 
