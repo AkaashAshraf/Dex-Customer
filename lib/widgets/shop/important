@@ -1,0 +1,342 @@
+Container(
+                            margin: EdgeInsets.only(right: 20),
+                            child: Text(
+                              'houseType',
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 15),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  content: Container(
+                                    height: 400,
+                                    width:
+                                        MediaQuery.of(context).size.width - 50,
+                                    child: ListView(
+                                      children: <Widget>[
+                                        Container(
+                                            height: 50,
+                                            color: Theme.of(context)
+                                                .secondaryHeaderColor,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 30.0),
+                                                  child: Text(
+                                                    'houseType',
+                                                    style:
+                                                        TextStyle(fontSize: 18),
+                                                  ).tr(),
+                                                )
+                                              ],
+                                            )),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              right: 20, top: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'apartment',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text =
+                                                          "apartment".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'villa',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text = "villa".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'compound',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text =
+                                                          "compound".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'company',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text =
+                                                          "company".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'fair',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text = "fair".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(right: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Text(
+                                                'school',
+                                                style: TextStyle(fontSize: 18),
+                                              ).tr(),
+                                              Radio<int>(
+                                                  value: 2,
+                                                  activeColor: Theme.of(context)
+                                                      .accentColor,
+                                                  groupValue: 1,
+                                                  onChanged: (int value) {
+                                                    setState(() {
+                                                      type.text = "school".tr();
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    });
+                                                  })
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text('save').tr(),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: Container(
+                              margin:
+                                  EdgeInsets.only(right: 17, left: 20, top: 5),
+                              height: 40,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor),
+                                borderRadius: BorderRadius.circular(5),
+                                // color: Theme.of(context)
+                                //     .secondaryHeaderColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: TextField(
+                                  controller: type,
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      prefixIcon: GestureDetector(
+                                        child: type.text.isNotEmpty
+                                            ? Icon(
+                                                Icons.check,
+                                                color: Colors.green,
+                                              )
+                                            : Icon(
+                                                Icons.home,
+                                                color: Color(0xffEE3840),
+                                              ),
+                                      ),
+                                      hintText: 'enterHouseType'.tr(),
+                                      hintStyle: TextStyle(
+                                          fontSize: 13, color: Colors.black)),
+                                  textAlign: TextAlign.right,
+                                  keyboardType: TextInputType.text,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(right: 20, top: 30),
+                            child: Text(
+                              'deliveryAddress',
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 15),
+                              textAlign: TextAlign.right,
+                            ).tr(),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            margin:
+                                EdgeInsets.only(right: 17, left: 20, top: 5),
+                            height: 40,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      Theme.of(context).secondaryHeaderColor),
+                              borderRadius: BorderRadius.circular(5),
+                              // color: Theme.of(context)
+                              //     .secondaryHeaderColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextField(
+                                controller: stBo,
+                                enabled: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    prefixIcon: GestureDetector(
+                                        child: Icon(
+                                      Icons.location_city,
+                                      color: Theme.of(context).primaryColor,
+                                    )),
+                                    hintText: 'streetHouseNumber'.tr(),
+                                    hintStyle: TextStyle(
+                                        fontSize: 13, color: Colors.black)),
+                                textAlign: TextAlign.right,
+                                keyboardType: TextInputType.text,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Container(
+                            margin:
+                                EdgeInsets.only(right: 17, left: 20, top: 5),
+                            height: 40,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      Theme.of(context).secondaryHeaderColor),
+                              borderRadius: BorderRadius.circular(5),
+                              // color: Theme.of(context)
+                              //     .secondaryHeaderColor,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextField(
+                                controller: nearLoc,
+                                enabled: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    prefixIcon: GestureDetector(
+                                        child: Icon(
+                                      Icons.location_city,
+                                      color: Theme.of(context).primaryColor,
+                                    )),
+                                    hintText: 'landmark'.tr(),
+                                    hintStyle: TextStyle(
+                                        fontSize: 13, color: Colors.black)),
+                                textAlign: TextAlign.right,
+                                keyboardType: TextInputType.text,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),

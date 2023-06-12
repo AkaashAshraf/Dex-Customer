@@ -1,0 +1,12 @@
+{      "dart.flutterSdkPath": "/Users/thiqatech/flutter_2_10_0",
+
+    "git.supportCancellation": true,
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "launch": {
+
+
+        "configurations": [],
+        "compounds": []
+    }
+}

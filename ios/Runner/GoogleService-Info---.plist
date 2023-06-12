@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>628815331732-ppkh7qrlmrndv2dm2urfa1pbimph0oca.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.628815331732-ppkh7qrlmrndv2dm2urfa1pbimph0oca</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5c8-fYw4vGKMkzP99fG6H58JYTAOtQhw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>628815331732</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ozman.ahlanwasahlan</string>
+	<key>PROJECT_ID</key>
+	<string>ahlan-wasahlan</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ahlan-wasahlan.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:628815331732:ios:19e144a9065cd57bd88f81</string>
+	<key>DATABASE_URL</key>
+	<string>https://ahlan-wasahlan.firebaseio.com</string>
+</dict>
+</plist>
