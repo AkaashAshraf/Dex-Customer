@@ -6,8 +6,6 @@
         // mavenLocal()
          // jcenter()
          google()
-         mavenCentral()
-        mavenLocal()
         jcenter()
         
     }
@@ -16,7 +14,7 @@
         afterEvaluate {project ->
             if (project.hasProperty("android")) {
                 android {
-                    compileSdkVersion 30
+                    compileSdkVersion 32
                     buildToolsVersion '29.0.2'
                 }
             }
@@ -34,17 +32,17 @@
 
 allprojects {
     repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-        jcenter()
-        mavenCentral {
-            content {
-                excludeGroupByRegex "com\\.google\\.android\\.gms"
-            }
-        }
         // google()
+        // mavenCentral()
+        // mavenLocal()
         // jcenter()
+        // mavenCentral {
+        //     content {
+        //         excludeGroupByRegex "com\\.google\\.android\\.gms"
+        //     }
+        // }
+        google()
+        jcenter()
     }
 }
 
