@@ -1069,8 +1069,9 @@ class _OrderReviewState extends State<OrderReview> {
                                       'application/x-www-form-urlencoded'
                                 }),
                             onWebViewCreated: (controller) {},
-                            onLoadStop:
-                                (InAppWebViewController controller, url) async {
+                            onUpdateVisitedHistory:
+                                (InAppWebViewController controller, url,
+                                    bool) async {
                               _onFinshedWebView(
                                   orderProvider,
                                   url.toString(),
@@ -1078,6 +1079,15 @@ class _OrderReviewState extends State<OrderReview> {
                                   cartProvider,
                                   longLatProvider);
                             }),
+                        // onLoadStop:
+                        //     (InAppWebViewController controller, url) async {
+                        //   _onFinshedWebView(
+                        //       orderProvider,
+                        //       url.toString(),
+                        //       paymentWebView,
+                        //       cartProvider,
+                        //       longLatProvider);
+                        // }),
                       ),
                       if (!paymentWebView.finished)
                         Center(
