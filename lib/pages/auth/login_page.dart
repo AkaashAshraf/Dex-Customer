@@ -2,12 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
-import 'package:customers/app.dart';
 import 'package:customers/models/user.dart';
 import 'package:customers/pages/auth/register_page.dart';
 import 'package:customers/pages/auth/request_reset.dart';
-import 'package:customers/pages/auth/reset_password.dart';
-import 'package:customers/providers/account/user_info_provider.dart';
 import 'package:customers/providers/auth/otp_validation_provider.dart';
 import 'package:customers/repositories/api_keys.dart';
 import 'package:customers/repositories/globals.dart';
@@ -17,7 +14,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_widgets/responsive_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
           data: FormData.fromMap({
             'login_phone': phone.toString(),
             'password': password,
+            "customer_type": 1,
           }));
       print(response.data['Data']);
       user = User.fromJson(response.data);
