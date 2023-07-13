@@ -1008,7 +1008,13 @@ class _OrderReviewState extends State<OrderReview> {
     // String jsonString = jsonEncode(paymentJson(orderProvider.orderList[0]));
     String jsonString = jsonEncode(productListData(cartProvider));
     Provider.of<OnlinePaymentProvider>(context, listen: false).webStarted();
-
+    log("products=" +
+        jsonString +
+        '&user_id=' +
+        userId.toString() +
+        '&total_amount=' +
+        total.toStringAsFixed(3) +
+        '&status=Order');
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(

@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.google.android.c2dm.permission.SEND" />
+    <!-- <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.SEND" /> -->
     <uses-permission android:name="com.deltadna.notification_test.permission.C2D_MESSAGE" />
     <uses-feature android:name="android.hardware.location.network" android:required="false" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
@@ -52,15 +52,18 @@
                 <action android:name="FLUTTER_NOTIFICATION_CLICK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <intent-filter>
+  <action android:name="com.google.firebase.MESSAGING_EVENT" />
+</intent-filter>
         </activity>
-                <service
+                <!-- <service
     android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService"
-    android:exported="false">
+    android:exported="true">
     <intent-filter>
         <action android:name="com.google.firebase.MESSAGING_EVENT" />
     </intent-filter>
-</service>
-<receiver
+</service> -->
+<!-- <receiver
     android:name="io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingReceiver"
     android:enabled="true"
     android:exported="true"
@@ -69,12 +72,12 @@
         <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         <category android:name="${applicationId}" />
     </intent-filter>
-</receiver>
-        <receiver android:exported="true" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+</receiver> -->
+        <!-- <receiver android:exported="true" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:exported="true" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
     </application>
 </manifest>

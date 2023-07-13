@@ -37,14 +37,26 @@ class _PlaceState extends State<Place> {
   var location = l.Location();
   Completer<GoogleMapController> _controller = Completer();
   LatLng _lastPosition;
+  final Set<Marker> _markers = {};
   Future _getLocation(BuildContext context) async {
     l.LocationData loc;
     try {
       loc = await location.getLocation();
-      Provider.of<LongLatProvider>(context, listen: false)
-          .setLoc(lat: loc.latitude, long: loc.longitude);
+      var prefs = await SharedPreferences.getInstance();
+      Provider.of<LongLatProvider>(context, listen: false).setLoc(
+          lat: prefs.getDouble('lat') ?? loc.latitude,
+          long: prefs.getDouble('long') ?? loc.longitude);
       _kLake = CameraPosition(
-          target: LatLng(loc.latitude, loc.longitude), zoom: 15.4746);
+          target: LatLng(prefs.getDouble('lat') ?? loc.latitude,
+              prefs.getDouble('long') ?? loc.longitude),
+          zoom: 15.4746);
+      if (prefs.getDouble('lat') != null && prefs.getDouble('long') != null) {
+        _markers.add(Marker(
+          markerId: MarkerId('Customer'),
+          position: LatLng(prefs.getDouble('lat'), prefs.getDouble('long')),
+          icon: BitmapDescriptor.defaultMarker,
+        ));
+      }
       _goToMyLoction();
     } catch (e) {
       if (e.code == 'PERMISSION_DENIED') {
@@ -103,6 +115,7 @@ class _PlaceState extends State<Place> {
                 margin: EdgeInsets.only(top: 24),
                 child: GoogleMap(
                   myLocationEnabled: true,
+                  markers: _markers.isNotEmpty ? _markers : {},
                   mapType: MapType.normal,
                   initialCameraPosition: _kGooglePlex,
                   onCameraMove: _onCameraMove,

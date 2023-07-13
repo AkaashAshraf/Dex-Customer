@@ -58,9 +58,9 @@ import 'providers/services/location.dart';
 import 'repositories/globals.dart';
 
 Future<dynamic> _backgroundMessageHandler(Map<String, dynamic> message) async {
-  await Firebase.initializeApp();
   print("_backgroundMessageHandler");
   // globals.showNotification('title', 'body');
+  print('$message');
   showNotification("notification['title']", "notification['body']");
   if (message.containsKey('data')) {
     // Handle data message
