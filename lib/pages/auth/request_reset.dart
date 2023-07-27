@@ -201,7 +201,8 @@ class _RequestResetState extends State<RequestReset> {
                     ),
                     child: GestureDetector(
                       onTap: () {
-                        if (phoneIsoCode == '+968' && phone.text.trim().length != 8) {
+                        if (phoneIsoCode == '+968' &&
+                            phone.text.trim().length != 8) {
                           Fluttertoast.showToast(
                               msg: "writePhoneNumber".tr(),
                               toastLength: Toast.LENGTH_SHORT,
@@ -211,7 +212,8 @@ class _RequestResetState extends State<RequestReset> {
                               textColor: Colors.white,
                               fontSize: 16.0);
                           return;
-                        } else if (phoneIsoCode != '+968' && phone.text.trim().length != 9) {
+                        } else if (phoneIsoCode != '+968' &&
+                            phone.text.trim().length != 9) {
                           Fluttertoast.showToast(
                               msg: "writePhoneNumber".tr(),
                               toastLength: Toast.LENGTH_SHORT,

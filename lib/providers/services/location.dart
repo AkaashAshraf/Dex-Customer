@@ -179,23 +179,29 @@ class ProductLocationState extends State<ProductLocation> {
                         Navigator.pop(context, true);
                       }
                     },
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 80, bottom: 25),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'confirm',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600),
-                        ).tr(),
+                        child: Center(
+                          child: Text(
+                            'confirm',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600),
+                          ).tr(),
+                        ),
                       ),
                     ),
                   )),

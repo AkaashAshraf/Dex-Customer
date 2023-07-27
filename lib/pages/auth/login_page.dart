@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             "customer_type": 1,
           }));
       print(response.data['Data']);
+      // inspect(response);
       user = User.fromJson(response.data);
 
       if (response.data['Data'] == "true") {

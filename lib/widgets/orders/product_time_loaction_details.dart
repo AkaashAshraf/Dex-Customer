@@ -1047,21 +1047,24 @@ class _ProductTimeAndLocationDetailsState
                       : () {
                           _navigateToOrderReviewPage(longLatProvider);
                         },
-                  child: Container(
-                      margin: EdgeInsetsResponsive.only(
-                          right: 20, left: 20, top: 5, bottom: 30),
-                      height: 45,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'continue',
-                          style: TextStyle(color: Colors.black, fontSize: 17),
-                        ).tr(),
-                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Container(
+                        margin: EdgeInsetsResponsive.only(
+                            right: 20, left: 20, top: 5, bottom: 30),
+                        height: 45,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'continue',
+                            style: TextStyle(color: Colors.black, fontSize: 17),
+                          ).tr(),
+                        )),
+                  ),
                 );
               },
             )

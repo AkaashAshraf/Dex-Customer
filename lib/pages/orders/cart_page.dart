@@ -132,7 +132,10 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                 ),
                                 ContainerResponsive(
-                                    height: 1, color: Colors.black, width: MediaQuery.of(context).size.width * .6),
+                                    height: 1,
+                                    color: Colors.black,
+                                    width:
+                                        MediaQuery.of(context).size.width * .6),
                                 ContainerResponsive(
                                   height: 40,
                                   width: 40,
@@ -145,7 +148,9 @@ class _CartScreenState extends State<CartScreen> {
                                   child: Center(),
                                 ),
                                 ContainerResponsive(
-                                    height: 1, color: Colors.black, width: _width * .6),
+                                    height: 1,
+                                    color: Colors.black,
+                                    width: _width * .6),
                                 ContainerResponsive(
                                   height: 40,
                                   width: 40,
@@ -296,22 +301,29 @@ class _CartScreenState extends State<CartScreen> {
                                                                       .product
                                                                       .shop)));
                                             },
-                                            child: ContainerResponsive(
-                                              height: 80,
-                                              width: MediaQuery.of(context).size.width,
-                                              margin: EdgeInsetsResponsive
-                                                  .symmetric(horizontal: 20),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  color: Colors.black),
-                                              child: Center(
-                                                  child: Text(
-                                                'pay',
-                                                style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white),
-                                              ).tr()),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                              child: ContainerResponsive(
+                                                height: 80,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                margin: EdgeInsetsResponsive
+                                                    .symmetric(horizontal: 20),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                    color: Colors.black),
+                                                child: Center(
+                                                    child: Text(
+                                                  'pay',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: Colors.white),
+                                                ).tr()),
+                                              ),
                                             ),
                                           );
                                         }

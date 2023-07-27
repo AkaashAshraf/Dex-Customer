@@ -72,7 +72,8 @@ class SpicalOrderState extends State<SpicalOrder> {
       prefs = await SharedPreferences.getInstance();
       var userPhone = prefs.get('user_phone') ?? '';
 
-      var response = await dioClient.get(APIKeys.BASE_URL + 'getUserinfo/$userPhone');
+      var response =
+          await dioClient.get(APIKeys.BASE_URL + 'getUserinfo/$userPhone');
 
       var data = response.data;
       print("BEFORE");
@@ -111,8 +112,8 @@ class SpicalOrderState extends State<SpicalOrder> {
       prefs = await SharedPreferences.getInstance();
       var id = prefs.get('user_id') ?? '1';
 
-      var response =
-          await dioClient.get(APIKeys.BASE_URL + 'getLogisticTrips&customerId=$id');
+      var response = await dioClient
+          .get(APIKeys.BASE_URL + 'getLogisticTrips&customerId=$id');
 
       var data = response.data["data"] as List;
       trips = data.map<LogTrip>((trip) => LogTrip.fromJson(trip)).toList();
@@ -194,15 +195,17 @@ class SpicalOrderState extends State<SpicalOrder> {
         return DropdownMenuItem(
           value: item.id,
           child: TextResponsive(
-            context.locale == Locale('en', '') ?
-            "${item.fromCity} - ${item.toCity}" : "${item.fromCityAr} - ${item.toCityAr}",
+            context.locale == Locale('en', '')
+                ? "${item.fromCity} - ${item.toCity}"
+                : "${item.fromCityAr} - ${item.toCityAr}",
             style: TextStyle(
               fontSize: 20,
               color: Colors.black,
             ),
           ),
         );
-      }).toList(),isExpanded: true,
+      }).toList(),
+      isExpanded: true,
       underline: Container(
           decoration: BoxDecoration(
         border: null,
@@ -249,7 +252,8 @@ class SpicalOrderState extends State<SpicalOrder> {
             ),
           ),
         );
-      }).toList(),isExpanded: true,
+      }).toList(),
+      isExpanded: true,
       underline: Container(
           decoration: BoxDecoration(
         border: null,
@@ -268,9 +272,8 @@ class SpicalOrderState extends State<SpicalOrder> {
         setState(() {
           pickedcarId = value;
           _dropCar = context.locale == Locale('ar')
-                ? 
-                list.where((v) => v.id == value).first.nameAr.toString():
-                list.where((v) => v.id == value).first.name.toString();
+              ? list.where((v) => v.id == value).first.nameAr.toString()
+              : list.where((v) => v.id == value).first.name.toString();
         });
         print(pickedcarId);
       },
@@ -297,7 +300,8 @@ class SpicalOrderState extends State<SpicalOrder> {
             ),
           ),
         );
-      }).toList(),isExpanded: true,
+      }).toList(),
+      isExpanded: true,
       underline: Container(
           decoration: BoxDecoration(
         border: null,

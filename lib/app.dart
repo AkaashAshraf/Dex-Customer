@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:customers/pages/account/settings_page.dart';
@@ -173,7 +174,7 @@ class AnimatedBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: kToolbarHeight,
+      height: Platform.isIOS ? 60 : kToolbarHeight,
       decoration: BoxDecoration(color: Colors.white),
       child: Row(
         children: <Widget>[
@@ -247,49 +248,52 @@ class BottomNavItem extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      transitionBuilder: (child, animation) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(0.0, 1.0),
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      },
-      duration: Duration(milliseconds: 500),
-      reverseDuration: Duration(milliseconds: 200),
-      child: isActive
-          ? Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      color: isActive == true ? activeColor : inactiveColor,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: AnimatedSwitcher(
+        transitionBuilder: (child, animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0.0, 1.0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        duration: Duration(milliseconds: 500),
+        reverseDuration: Duration(milliseconds: 200),
+        child: isActive
+            ? Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: isActive == true ? activeColor : inactiveColor,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 5.0),
-                  Container(
-                    width: 5.0,
-                    height: 5.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: isActive == true ? activeColor : inactiveColor,
+                    const SizedBox(height: 5.0),
+                    Container(
+                      width: 5.0,
+                      height: 5.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isActive == true ? activeColor : inactiveColor,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+              )
+            : Icon(
+                icon,
+                color: isActive == true ? activeColor : inactiveColor,
               ),
-            )
-          : Icon(
-              icon,
-              color: isActive == true ? activeColor : inactiveColor,
-            ),
+      ),
     );
   }
 }

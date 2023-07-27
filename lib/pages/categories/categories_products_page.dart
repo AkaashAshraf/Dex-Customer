@@ -409,13 +409,19 @@ class _CategoryProductHomeState extends State<CategoryProductHome> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          TextResponsive(
-                                              context.locale == Locale('en')
-                                                  ? product.name.toString()
-                                                  : product.nameAr.toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50,
-                                                  color: Colors.black))
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.85,
+                                            child: TextResponsive(
+                                                context.locale == Locale('en')
+                                                    ? product.name.toString()
+                                                    : product.nameAr.toString(),
+                                                style: TextStyle(
+                                                    fontSize: 50,
+                                                    color: Colors.black)),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -1134,21 +1140,26 @@ class _CategoryProductHomeState extends State<CategoryProductHome> {
                                                   }
                                                   setState(() {});
                                                 },
-                                                child: ContainerResponsive(
-                                                  width: 600,
-                                                  height: 70,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.black,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  child: Center(
-                                                      child: TextResponsive(
-                                                    "Add To Cart".tr(),
-                                                    style: TextStyle(
-                                                        fontSize: 30,
-                                                        color: Colors.white),
-                                                  )),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: ContainerResponsive(
+                                                    width: 600,
+                                                    height: 70,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.black,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                    child: Center(
+                                                        child: TextResponsive(
+                                                      "Add To Cart".tr(),
+                                                      style: TextStyle(
+                                                          fontSize: 30,
+                                                          color: Colors.white),
+                                                    )),
+                                                  ),
                                                 ),
                                               ),
                                             ]),
