@@ -60,6 +60,7 @@ class ShopsProvider extends ChangeNotifier {
       _nextShopsByRegion = response1.data['next_page_url'];
 
       var parsedList = (data + data1) as List;
+      log('shop list $parsedList');
       _shops = parsedList.map<Shop>((json) => Shop.fromJson(json)).toList();
       _loading = false;
       notifyListeners();
@@ -123,6 +124,7 @@ class ShopsProvider extends ChangeNotifier {
           throw error;
       }
     } catch (error) {
+      log('$error');
       _loading = false;
       _load++;
       if (alone != null) {
@@ -148,10 +150,14 @@ class ShopsProvider extends ChangeNotifier {
       _region += 3;
       var response = await Dio().get(APIKeys.BASE_URL +
           'getStores/Lat1=$lat&Lon1=$long&OrderBy=id&regionId=$region');
+      log(APIKeys.BASE_URL +
+          'getStores/Lat1=$lat&Lon1=$long&OrderBy=id&regionId=$region');
       var data = response.data['data'];
       var shops = data as List;
+
       _nextShopsByRegion = response.data['next_page_url'];
       _shopsByRegion = shops.map<Shop>((json) => Shop.fromJson(json)).toList();
+      log('shop list: $shops');
       _loading = false;
       _load++;
       if (alone != null) {

@@ -96,13 +96,6 @@ class ProductLocationState extends State<ProductLocation> {
         return Scaffold(
           body: Stack(
             children: <Widget>[
-              InkWell(
-                // onTap: () => Get.back(),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  // color: AppColors.whiteshade,
-                ),
-              ),
               Container(
                 margin: EdgeInsets.only(top: 24),
                 child: GoogleMap(
@@ -122,13 +115,32 @@ class ProductLocationState extends State<ProductLocation> {
                   },
                 ),
               ),
-              Align(
-                  alignment: Alignment.center,
-                  child: Icon(
-                    CupertinoIcons.location_solid,
-                    color: Theme.of(context).colorScheme.secondary,
-                    size: 30,
-                  )),
+              // Positioned(
+              //   top: 50,
+              //   left: 20,
+              //   child: InkWell(
+              //     // onTap: () => Get.back(),
+              //     child: Container(
+              //       height: 50,
+              //       width: 50,
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(8),
+              //         color: Colors.white,
+              //       ),
+              //       child: const Icon(
+              //         Icons.arrow_back_ios,
+              //         // color: AppColors.whiteshade,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // Align(
+              //     alignment: Alignment.center,
+              //     child: Icon(
+              //       CupertinoIcons.location_solid,
+              //       color: Theme.of(context).colorScheme.secondary,
+              //       size: 30,
+              //     )),
               Align(
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(

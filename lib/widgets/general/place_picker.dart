@@ -131,6 +131,38 @@ class _PlaceState extends State<Place> {
                   },
                 ),
               ),
+              Positioned(
+                top: 50,
+                left: 20,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 10,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6),
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          // color: AppColors.whiteshade,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Align(
                   alignment: Alignment.center,
                   child: Icon(

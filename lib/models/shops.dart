@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:customers/models/user.dart';
 
 class Shop {
@@ -69,12 +71,15 @@ class Shop {
     ShopCity myCity;
     dynamic myDist;
     var comments;
-
+    if (json == null) {
+      return null;
+    }
     if (json['ShopCity'] != null) {
       myCity = ShopCity.fromJson(json['ShopCity']);
     } else {
       myCity = null;
     }
+    myCity = null;
     if (json['distance'] == null) {
       myDist = 0;
     } else {

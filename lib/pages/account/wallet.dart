@@ -49,6 +49,7 @@ class _WalletState extends State<Wallet> {
               : ListView(
                   shrinkWrap: false,
                   children: [
+                    
                     ContainerResponsive(
                       padding: EdgeInsetsResponsive.only(bottom: 20),
                       decoration: BoxDecoration(
@@ -64,8 +65,20 @@ class _WalletState extends State<Wallet> {
                             bottomRight: Radius.circular(15),
                           )),
                       child: Column(
+                        
                         children: [
-                          SizedBoxResponsive(height: 65),
+                          SizedBoxResponsive(height: 40),
+                         Align 
+                         ( 
+                          alignment: Alignment.topLeft,
+                         child: Padding(
+                           padding: EdgeInsetsResponsive.symmetric(
+                                horizontal: 20.0), child:
+                          InkWell( 
+                            onTap:() => Navigator.pop(context),
+                            child:
+                          Icon(Icons.arrow_back_ios, color: Colors.white,),),),),
+                           SizedBoxResponsive(height: 40),
                           Padding(
                             padding: EdgeInsetsResponsive.symmetric(
                                 horizontal: 20.0),
