@@ -110,12 +110,13 @@ class _ProfileState extends State<Profile> {
       // data.add('old_password', oldPass.text);
       // data.add('password', pass2.text);
 
-      var response = await dioClient.post(APIKeys.BASE_URL + 'updateUserPassword',
-          data: FormData.fromMap({
-            'uid': user.id,
-            'old_password': oldPass.text,
-            'password': pass2.text,
-          }));
+      var response =
+          await dioClient.post(APIKeys.BASE_URL + 'updateUserPassword',
+              data: FormData.fromMap({
+                'uid': user.id,
+                'old_password': oldPass.text,
+                'password': pass2.text,
+              }));
       print('RESPONSE ${response.data}');
 
       _pr.hide();
@@ -164,13 +165,14 @@ class _ProfileState extends State<Profile> {
       // data.add('uid', user.id);
       // data.add('img', UploadFileInfo(_profileImage, 'basha'));
 
-      var response = await dioClient.post(APIKeys.BASE_URL + 'updateUserProfileImg',
-          data: FormData.fromMap({
-            'uid': user.id,
-            'img': await MultipartFile.fromFile(_profileImage.path,
-                filename: 'Customer_image_${_profileImage.path}'),
-            // MultipartFile.fromFileSync( _profileImage.path,filename: '')
-          }));
+      var response =
+          await dioClient.post(APIKeys.BASE_URL + 'updateUserProfileImg',
+              data: FormData.fromMap({
+                'uid': user.id,
+                'img': await MultipartFile.fromFile(_profileImage.path,
+                    filename: 'Customer_image_${_profileImage.path}'),
+                // MultipartFile.fromFileSync( _profileImage.path,filename: '')
+              }));
       print('RESPONSE ${response.data}');
       Provider.of<UserInfoProvider>(context, listen: false)
           .updateUser(User.fromJson(response.data['Data']));

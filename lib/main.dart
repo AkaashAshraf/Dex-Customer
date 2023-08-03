@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var token = await FirebaseMessaging.instance.getToken();
 
-    print('TOKEN $token');
+    print('TOKEN====> $token');
   }
 
   void checkStatus() async {
@@ -513,7 +513,7 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       var token = await FirebaseMessaging.instance.getToken();
 
-      print('TOKEN $token');
+      print('TOKEN: $token');
 
       var response = await dioClient.get(
           APIKeys.BASE_URL + 'sendToken/Userid=$usrId&token=$token&appId=1');
